@@ -60,7 +60,7 @@ class GoogleBook:
     def thumbnail(self):
         abeBooksThumbnailUrl = f"https://pictures.abebooks.com/isbn/{self.isbn}-us.jpg"
 
-        if (get(abeBooksThumbnailUrl).status_code == 200):
+        if (get(abeBooksThumbnailUrl, headers=HEADERS()).status_code == 200):
             return abeBooksThumbnailUrl
         else:
             try:
@@ -114,7 +114,7 @@ class googleBooksSearch:
 
     @property
     def webpage(self):
-        return (get(f'https://www.googleapis.com/books/v1/volumes?q={self.query}'))
+        return (get(f'https://www.googleapis.com/books/v1/volumes?q={self.query}', headers=HEADERS()))
 
     @property
     def statusCode(self):
@@ -207,7 +207,7 @@ class googleBooksSearch:
 
         def checkAndReturnAbeBookThumbnail(isbn):
             abeBooksThumbnailUrl = f"https://pictures.abebooks.com/isbn/{isbn}-us.jpg"
-            if (get(abeBooksThumbnailUrl).status_code == 200):
+            if (get(abeBooksThumbnailUrl, headers=HEADERS()).status_code == 200):
                 return abeBooksThumbnailUrl
 
         abeBooksThumbnails = list(

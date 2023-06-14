@@ -1,0 +1,44 @@
+{'User-Agent': 'AppleWebkit/515.13 Safari/515.13', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/41.0.2335.156', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Mozilla/1.0 Chrome/40.0.2353.147', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Mozilla/3.0 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'AppleWebkit/519.25 Safari/519.25 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'AppleWebkit/505.19 Safari/505.19 Mozilla/3.0 Chrome/40.0.2276.149', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/42.0.2342.151 Mozilla/3.0 AppleWebkit/500.14 Safari/500.14', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/43.0.2236.149', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'AppleWebkit/500.9 Safari/500.9 Chrome/41.0.2028.140 Mozilla/3.0', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/42.0.2274.142 Mozilla/3.0 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'AppleWebkit/520.22 Safari/520.22 Mozilla/3.0 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/41.0.2190.144 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Blank List
+
+{'User-Agent': 'Chrome/43.0.2271.149 Mozilla/2.0', 'Accept-Langauge': 'en-US'} -> Blank List
+
+
+{'User-Agent': 'Chrome/43.0.2225.145 X11; Linux x86_64 KHTML/ like Gecko AppleWebkit/500.11 Safari/500.11', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'AppleWebkit/529.2 Safari/529.2', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'Chrome/42.0.2062.156 AppleWebkit/535.28 Safari/535.28 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'X11; Linux x86_64 KHTML/ like Gecko Chrome/43.0.2346.155 Mozilla/3.0', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'AppleWebkit/503.8 Safari/503.8 Mozilla/3.0 X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'AppleWebkit/529.28 Safari/529.28 Mozilla/2.0', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'X11; Linux x86_64 KHTML/ like Gecko', 'Accept-Langauge': 'en-US'} -> Proper Results
+
+{'User-Agent': 'Mozilla/3.0 Chrome/40.0.2141.145', 'Accept-Langauge': 'en-US'} -> Proper Results

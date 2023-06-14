@@ -15,6 +15,12 @@ def readJSONFile(attribute):
 def extractText(text):
     return re.sub(r'<.*?>', '', str(text))
 
+
+def extractURL(a):
+    return (re.search(r"https://[\w\W]+&sa=U&ved", a['href']).group().replace('&sa=U&ved', ''))
+    # .group() returns the matched string
+
+
 # "User-Agent":"Mozilla/4.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
 
 
@@ -29,7 +35,7 @@ def HEADERS():
 
     headersList = [
         f'Mozilla/{a}.0',
-        f'X{b}; Linux x86_64 KHTML/ like Gecko',
+        f'X11; Linux x86_64 KHTML/ like Gecko',
         f'AppleWebkit/{c}.{d} Safari/{c}.{d}',
         f'Chrome/{e}.0.{f}.{g}',
     ]
@@ -42,7 +48,7 @@ def HEADERS():
 
         customHeader += f"{header} "
 
-    return readJSONFile('headers')
+    # return readJSONFile('headers')
 
     return {
         "User-Agent": customHeader.strip(),
