@@ -8,7 +8,7 @@ from requests import get, head
 from bs4 import BeautifulSoup
 from concurrent.futures import Executor, ThreadPoolExecutor
 import re
-from globalFunctions import HEADERS, extractText
+from globalFunctions import HEADERS(), extractText
 
 
 class BookData:
@@ -19,7 +19,7 @@ class BookData:
 
 
 def extractBookData(link):
-    webpage = get(link, headers=HEADERS)
+    webpage = get(link, headers=HEADERS())
 
     soup = BeautifulSoup(webpage.content, 'lxml')
     title = soup.find('span', attrs={
@@ -46,7 +46,7 @@ def searchAmazon(query):
 
     webpage = get('https://amazon.com/s', params={
         "k": query
-    }, headers=HEADERS)
+    }, headers=HEADERS())
     # try to rewrite headers when error code is 503
     print(str(webpage.status_code).center(100))
 

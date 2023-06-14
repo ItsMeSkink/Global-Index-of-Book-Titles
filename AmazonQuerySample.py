@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import os
 
-from .globalFunctions import HEADERS
+from .globalFunctions import HEADERS()
 
 # Function to extract Product Title
 
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     # HTTP Request
     webpage = requests.get(URL, params={
         "k": 'On the origin of species'
-    }, headers=HEADERS)
+    }, headers=HEADERS())
     # Soup Object containing all data
     print(webpage)
     soup = BeautifulSoup(webpage.content, "lxml")
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     for link in links_list:
 
         new_webpage = requests.get(
-            "https://www.amazon.com" + link, headers=HEADERS)
+            "https://www.amazon.com" + link, headers=HEADERS())
 
         new_soup = BeautifulSoup(new_webpage.content, "lxml")
 

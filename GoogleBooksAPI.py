@@ -101,6 +101,14 @@ class googleBooksSearch:
             raise KeyError(
                 'No Query Resolved, Please Enter either an ISBN, Title or Author')
 
+        statusCode = self.webpage.status_code
+        if (statusCode == 404 or json.loads(self.webpage.text)['totalItems'] == 0):
+            print(colored('Book Not Found. Branch Out', 'red'))
+        elif (statusCode == 429):
+            print(colored('Try Again Later Network Overload', 'red'))
+        elif (statusCode == 200):
+            print(colored('Successfully Retreived', 'green'))
+
     @property
     def webpage(self):
         return (get(f'https://www.googleapis.com/books/v1/volumes?q={self.query}'))
@@ -112,7 +120,12 @@ class googleBooksSearch:
 
     @property
     def rawItems(self):
-        return json.loads(self.webpage.text)['items']
+        try:
+            return json.loads(self.webpage.text)['items']
+        except Exception as ke:
+            # print(colored('Not Retrieved. Branch Out', 'red'))
+            # here another 3rd function would go which would retreive similar strucuted data from somewhere else
+            pass
 
     @property
     def items(self):
@@ -133,7 +146,13 @@ class googleBooksSearch:
 
     @property
     def authors(self):
-        return (list(map(lambda item: item['authors'], self.items)))
+        def checkAndReturnForAuthors(item):
+            try:
+                return item['authors']
+            except:
+                pass
+
+        return (list(map(checkAndReturnForAuthors, self.items)))
 
     @property
     def descriptions(self):
@@ -196,9 +215,23 @@ class googleBooksSearch:
 
     @property
     def data(self):
-        # mapping and extracting data from volumeInfo(self.items)
-        # return list(map(extractUsefulData, self.items))
         return list(map(lambda item: GoogleBook(item).json(), self.items))
 
+    def __len__(self):
+        return len(self.data)
 
-print(googleBooksSearch(title="Psychology Of Money").data)
+    def __str__(self):
+        return str(self.data)
+        # more methods needed when "book not found"
+
+    def __call__(self):
+        statusCode = self.webpage.status_code
+        if (statusCode == 404):
+            print(colored('Not Retrieved. Branch Out', 'red'))
+        elif (statusCode == 429):
+            print(colored('Try Again Later Network Overload', 'red'))
+        elif (statusCode == 200):
+            print(colored('Successfully Retreived'))
+
+
+book = (googleBooksSearch(9789380703688).titles)
