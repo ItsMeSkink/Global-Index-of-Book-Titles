@@ -14,7 +14,6 @@ def readJSONFile(attribute):
 
 def extractText(text):
     return re.sub(r'<.*?>', '', str(text))
-    # return str(str(text).split('>')[2].split('<')[0])
 
 # "User-Agent":"Mozilla/4.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
 

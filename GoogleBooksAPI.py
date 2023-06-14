@@ -1,5 +1,6 @@
 import json
 from turtle import st
+from outcome import Value
 from requests import get
 from termcolor import colored
 from globalFunctions import HEADERS
@@ -103,9 +104,11 @@ class googleBooksSearch:
 
         statusCode = self.webpage.status_code
         if (statusCode == 404 or json.loads(self.webpage.text)['totalItems'] == 0):
-            print(colored('Book Not Found. Branch Out', 'red'))
+            raise ValueError(colored('Book Not Found. Branch Out', 'red'))
         elif (statusCode == 429):
-            print(colored('Try Again Later Network Overload', 'red'))
+            # print(colored('Try Again Later Network Overload', 'red'))
+            raise RuntimeError(
+                colored('Try Again Later, Network Overload 429'))
         elif (statusCode == 200):
             print(colored('Successfully Retreived', 'green'))
 
@@ -234,4 +237,5 @@ class googleBooksSearch:
             print(colored('Successfully Retreived'))
 
 
-book = (googleBooksSearch(9789380703688).titles)
+book = (googleBooksSearch(title="Python Programming A Modular Approach").titles)
+print(book)

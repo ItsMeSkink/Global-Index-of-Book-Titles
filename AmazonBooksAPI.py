@@ -1,6 +1,8 @@
-from termcolor import colored
-from ScrappingClasses import amazonWebpage, googleWebpage
 from concurrent.futures import Executor, ThreadPoolExecutor
+from ScrappingClasses.amazonWebpage import amazonWebpage
+from ScrappingClasses.googleWebpage import googleWebpage
+from termcolor import colored
+
 executor = ThreadPoolExecutor()
 
 
@@ -65,7 +67,7 @@ while n < len(isbnQueryResults.titles):
             # Inappropriate Results
             print(colored(e, 'red'))
 
-            if(e == 'You have been CAPTCHAd, change header'):
+            if (e == 'You have been CAPTCHAd, change header'):
                 break
             # finishes the program because it isn't the error of data error but runtime error
             print()
