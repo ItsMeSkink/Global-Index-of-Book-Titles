@@ -1,6 +1,6 @@
 from concurrent.futures import Executor, ThreadPoolExecutor
 from ScrappingClasses.amazonWebpage import amazonWebpage
-from ScrappingClasses.googleWebpage import googleWebpage
+from ScrappingClasses.googleWebpage import googleResults, googleWebpage
 from termcolor import colored
 
 executor = ThreadPoolExecutor()
@@ -11,13 +11,13 @@ isbnInput = 9789380703688
 isbnInput = 9789332585348
 
 
-isbnQueryResults = googleWebpage(f'Buy "{isbnInput}" Book')
+isbnQueryResults = googleResults(f'Buy "{isbnInput}" Book')
 print(isbnQueryResults.titles)
 n = 0
 print(len(isbnQueryResults.titles))
 
 while n < len(isbnQueryResults.titles):
-    buyQueryResults = googleWebpage(
+    buyQueryResults = googleResults(
         isbnQueryResults.titles[n] + ' site:amazon.com')
 
     try:

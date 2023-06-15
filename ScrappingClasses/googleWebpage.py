@@ -3,7 +3,7 @@ import re
 from requests import get
 from termcolor import colored
 from ScrappingClasses.commons import webData
-from globalFunctions import extractText, extractURL
+from globalFunctions import extractText, extractURL, threadMap
 
 
 class GoogleResult:
@@ -42,7 +42,7 @@ class googleWebpage(webData):
     @property
     def titles(self):
         titles = list(
-            map(extractText, self.soup.select('div.egMi0.kCrYT a h3')))
+            threadMap(extractText, self.soup.select('div.egMi0.kCrYT a h3')))
 
         if (titles == []):
             raise ValueError('Titles not recieved')
@@ -52,7 +52,7 @@ class googleWebpage(webData):
     @property
     def hrefs(self):
 
-        allHrefs = list(map(extractURL, self.soup.select('div.egMi0 a')))
+        allHrefs = list(threadMap(extractURL, self.soup.select('div.egMi0 a')))
         # extracts a url from the unaccessible hrefs and create a list
 
         if (allHrefs == []):
@@ -67,7 +67,6 @@ class googleWebpage(webData):
         return list(map(lambda element: GoogleResult(element).json(), resultElements))
 
 
-
 # MAIN USE IN OTHER ALGORITHMS
 class googleResults:
     def __init__(self, query):
@@ -77,54 +76,32 @@ class googleResults:
         self.dataExceptCount = 0
 
         # raise an error when after 5 recurrings it still doesn't yield data (meaning there isn't any data available).
-
     @property
     def titles(self):
-        bookResults = googleWebpage(self.query)
-        # if 429 error would be raised here only instaed of titles
-
-        # if(self.titleExceptCount == 0):
-            # raise ValueError('no titles found at all')
-
-        try:
-            titles = bookResults.titles
-            if (titles == [] or titles == None or titles == 'None'):
-                # self.titleExceptCount = self.titleExceptCount + 1
-                self.titleExceptCount += 1
-                return self.titles
-            else:
-                print(self.titleExceptCount)
-                return titles
-        except:
-            self.titleExceptCount += 1
-            return self.titles
+        return list(map(lambda result: result["title"], self.data))
 
     @property
     def hrefs(self):
-        bookResults = googleWebpage(self.query)
-        try:
-            hrefs = bookResults.hrefs
-            if (hrefs == [] or hrefs == None or hrefs == 'None'):
-                self.hrefsExceptCount += 1
-                return self.hrefs
-            else:
-                print(self.hrefsExceptCount)
-                return hrefs
-        except:
-            self.hrefsExceptCount += 1
-            return self.hrefs
+        return list(map(lambda result: result["href"], self.data))
 
     @property
     def data(self):
         bookResults = googleWebpage(self.query)
+
+        print(self.dataExceptCount)
+        if (self.dataExceptCount > 3):
+            raise ValueError(f'No Results for this {self.query}')
+
         try:
             data = bookResults.data
             if (data == [] or data == None or data == 'None'):
                 self.dataExceptCount += 1
                 return self.data
             else:
-                print(self.dataExceptCount)
                 return data
         except:
             self.dataExceptCount += 1
             return self.data
+
+    def json(self):
+        return self.data

@@ -14,8 +14,8 @@ class abeBooksWebpage(webData):
     def __init__(self, url):
         self.url = url
 
-        # if (self.title == 'None'):
-        #     raise ValueError('No title returned')
+        if (self.title == 'None'):
+            raise ValueError('No title returned')
 
         try:
             pass
@@ -77,7 +77,8 @@ class abeBooksWebpage(webData):
 
     @property
     def thumbnail(self):
-        thumbnail =  self.soup.select_one('div#itemOverview div#imageContainer.pswg img' if self.isServlet == True else 'div#thumbnail.feature-image img')
+        thumbnail = self.soup.select_one(
+            'div#itemOverview div#imageContainer.pswg img' if self.isServlet == True else 'div#thumbnail.feature-image img')
 
         try:
             # in case thumbnail is not available

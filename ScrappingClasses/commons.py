@@ -5,7 +5,7 @@ from globalFunctions import HEADERS
 from bs4.builder import XMLParsedAsHTMLWarning
 import warnings
 
-# warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
+warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
 # this would filter the warnings even though the code does work
 
 

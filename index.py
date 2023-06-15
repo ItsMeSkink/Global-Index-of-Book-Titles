@@ -51,9 +51,10 @@ from ScrappingClasses.googleWebpage import googleResults, googleWebpage
 
 # print(getGoogleResultsRecurring('Buy Python Programming A Modular Approach'))
 
-# results = (googleResults('Buy Python Programming : A Modular Approach book site:amazon.com'))
+results = (googleResults('Buy Python Programming : A Modular Approach book site:amazon.com'))
+# results = googleResults('fajkdshfkjsadfah')
 
-# print(results.titles)
+print(results.titles)
 # I have observed that the first time that we print the data can print a blank but if we print it the second time using a second call it can yield a useful data.
 # An error I'm getting is related to lxml and it returns a blank array what I have done to solve it is reoccur the function if it returns a blank array other than that any exception would also reoccur the function.
 # Very successful outcome of applying a recurring algorithm to retrieve the titles for definite Results is that no matter whattime it takes it would definitely return the titles or the data
@@ -64,9 +65,9 @@ from ScrappingClasses.googleWebpage import googleResults, googleWebpage
 # print(abeBook.data)
 
 
-abeBookSearch = abeBookSearchPage(
-    'https://www.abebooks.com/servlet/SearchResults?cm_sp=plpafe-_-all-_-soft&an=naveen%20kumar&bi=s&n=100121501&sortby=17&tn=python%20programming%20modular%20approach')
-print(abeBookSearch.booksData)
+# abeBookSearch = abeBookSearchPage(
+#     'https://www.abebooks.com/servlet/SearchResults?cm_sp=plpafe-_-all-_-soft&an=naveen%20kumar&bi=s&n=100121501&sortby=17&tn=python%20programming%20modular%20approach')
+# print(abeBookSearch.booksData)
 
-with open('.js', 'w') as jsFile:
-    jsFile.write(f'a={abeBookSearch.booksData}')
+# with open('.js', 'w') as jsFile:
+#     jsFile.write(f'a={abeBookSearch.booksData}')
