@@ -40,9 +40,8 @@ class amazonWebpage(webData):
 
         try:
             return int(pages)
-            # returns the pages as integer or returns None
         except:
-            return None
+            pass
 
     @property
     def publisher(self):

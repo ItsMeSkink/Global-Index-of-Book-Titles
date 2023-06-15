@@ -83,8 +83,8 @@ class googleResults:
         bookResults = googleWebpage(self.query)
         # if 429 error would be raised here only instaed of titles
 
-        # if(self.titleExceptCount == 5):
-        #     raise ValueError('no titles found at all')
+        # if(self.titleExceptCount == 0):
+            # raise ValueError('no titles found at all')
 
         try:
             titles = bookResults.titles

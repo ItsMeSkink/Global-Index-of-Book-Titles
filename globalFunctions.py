@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 import json
 from mimetypes import init
 from random import choice
@@ -8,8 +9,7 @@ def readJSONFile(attribute):
     with open('globalVariables.json', 'r') as jsonFile:
         return json.loads(jsonFile.read())[attribute]
 
-
-# HEADERS = (readJSONFile('headers'))
+# ------------------------------------------------------------------- #
 
 
 def extractText(text):
@@ -20,8 +20,12 @@ def extractURL(a):
     return (re.search(r"https://[\w\W]+&sa=U&ved", a['href']).group().replace('&sa=U&ved', ''))
     # .group() returns the matched string
 
+# ------------------------------------------------------------------- #
 
+# reference
 # "User-Agent":"Mozilla/4.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
+
+# go not use fake headers
 
 
 def HEADERS():
@@ -55,4 +59,9 @@ def HEADERS():
         "Accept-Langauge": 'en-US'
     }
 
-# print(HEADERS())
+# ------------------------------------------------------------------- #
+
+
+def threadMap(method, list):
+    executor = ThreadPoolExecutor()
+    return executor.map(method, list)

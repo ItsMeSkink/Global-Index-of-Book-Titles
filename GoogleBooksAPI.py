@@ -3,7 +3,7 @@ from turtle import st
 from outcome import Value
 from requests import get
 from termcolor import colored
-from globalFunctions import HEADERS
+from globalFunctions import HEADERS()
 
 
 def checkAndReturnForIndustryIdentifier(item):

@@ -1,13 +1,27 @@
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+from csv import list_dialects
+from mimetypes import init
+import re
 from requests import get
+import soupsieve
 from ScrappingClasses.commons import webData
-from globalFunctions import HEADERS, extractText
+from globalFunctions import HEADERS, extractText, threadMap
 
 
-
+# web process of abebooks for www.abebooks.com/servlet/search
 
 class abeBooksWebpage(webData):
     def __init__(self, url):
         self.url = url
+
+        # if (self.title == 'None'):
+        #     raise ValueError('No title returned')
+
+        try:
+            pass
+        except Exception as e:
+            print(url)
+            print(e)
 
     @property
     def webpage(self):
@@ -16,7 +30,7 @@ class abeBooksWebpage(webData):
     # this entire is if the url starts with https://www.abebooks.com/servlet
     @property
     def title(self):
-        return extractText(self.soup.select_one('h1#book-title' if self.isServlet == True else "div.plp-title h1"))
+        return extractText(self.soup.select_one('h1#book-title span' if self.isServlet == True else "div.plp-title h1"))
 
     @property
     def authors(self):
@@ -24,27 +38,38 @@ class abeBooksWebpage(webData):
 
     @property
     def isbn(self):
+        isbns10And13 = list()
         if (self.isServlet == True):
             # returns the ISBN when the URL is a serlvet
             isbnTag = (self.soup.select('div#isbn a'))
             isbns10And13 = (
                 list(map(lambda item: extractText(item).strip(), isbnTag)))
-            isbn13 = list(filter(lambda isbn: True if len(
-                isbn) == 13 else False, isbns10And13))[0]
-            return isbn13
         else:
             # returns the ISBN when the URL is not servlet
             isbnTag = self.soup.select('div.isbns span')
             isbns10And13 = list(
                 map(lambda item: item.text.split(':')[1].strip(), isbnTag))
             # prints only the isbn10 and isbn 13 (extracted from string)
-            isbn13 = list(filter(lambda isbn: True if len(
-                isbn) == 13 else False, isbns10And13))[0]
-            return isbn13
+
+        isbn13 = list(filter(lambda isbn: True if len(
+            isbn) == 13 else False, isbns10And13))
+
+        try:
+            return isbn13[0]
+            # in case when there is no ISBN available
+        except:
+            pass
 
     @property
     def description(self):
-        return extractText(self.soup.select_one('div.synopsis-body')).strip()
+        description = extractText(
+            self.soup.select_one('div.synopsis-body')).strip()
+
+        if (description.startswith('Please Read Notes')):
+            # in case when the dsecription start with "Please Read Notes" because it isn't an actual description
+            pass
+        else:
+            return description
 
     @property
     def publisher(self):
@@ -52,7 +77,13 @@ class abeBooksWebpage(webData):
 
     @property
     def thumbnail(self):
-        return self.soup.select_one('div#itemOverview div#imageContainer.pswg img' if self.isServlet == True else 'div#thumbnail.feature-image img')['src']
+        thumbnail =  self.soup.select_one('div#itemOverview div#imageContainer.pswg img' if self.isServlet == True else 'div#thumbnail.feature-image img')
+
+        try:
+            # in case thumbnail is not available
+            return thumbnail['src']
+        except:
+            pass
 
     @property
     def data(self):
@@ -74,3 +105,31 @@ class abeBooksWebpage(webData):
             return True
         else:
             return False
+
+# replace "sortby=17 with sortby=20"
+# remove "&bi=s&n=100121501"
+
+
+class abeBookSearchPage(webData):
+    def __init__(self, url):
+        url = re.sub(r'sortby=\d+&', 'sortby=20&', url)
+        url = re.sub(r'bi=s&n=\d+&', '', url)
+
+        self.url = url
+
+    @property
+    def titleHrefs(self):
+        hrefs = self.soup.select('div.result-detail.col-xs-8 h2.title a')
+
+        return list(map(lambda a: 'https://www.abebooks.com' + re.sub(r'&searchurl=[\w\W]+', '', a['href']), hrefs))
+
+    @property
+    def isbnHrefs(self):
+        hrefs = self.soup.select(
+            'div.result-detail.col-xs-8 p.isbn.pub-data a')
+
+        return list(map(lambda a: 'https://www.abebooks.com' + re.sub(r'&searchurl=[\w\W]+', '', a['href']), hrefs))
+
+    @property
+    def booksData(self):
+        return (list(threadMap(lambda href: abeBooksWebpage(href).data, (self.titleHrefs + self.isbnHrefs))))

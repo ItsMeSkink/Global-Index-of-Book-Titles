@@ -1,9 +1,5 @@
-from calendar import LocaleHTMLCalendar
 from mimetypes import init
-from os import terminal_size
 import time
-from typing import Self
-import attr
 from requests import get, head
 from bs4 import BeautifulSoup
 from concurrent.futures import Executor, ThreadPoolExecutor

@@ -1,11 +1,10 @@
-from os import terminal_size
 import re
 
 
 titleList = ['Buy On the origin of species by Charles Darwin online in india',
              'ON THE ORIGIN OF SPECIES - BooksBonanza',
              'On the Origin of Species (Charles Darwin) (Paperback) - BooksTech', 'On the Origin of Species (Charles Darwin) (Paperback)', 'On the Origin of Species - Deen The Bookman', 'Buy On the Origin of Species (Charles Darwin) Book Online at Low']
-titleList = []
+# titleList = []
 
 
 def extractTitleFromStrings(titleList):
@@ -26,7 +25,6 @@ def extractTitleFromStrings(titleList):
             wordTimesDict[word] = numberOfTimes
     # this returns a dictionary which mentioned how many times a word has been repeated in the dataset
 
-
     commonWords = list()
     substractValue = 0
     while commonWords == list():
@@ -35,7 +33,7 @@ def extractTitleFromStrings(titleList):
                 commonWords.append(key)
         substractValue += 1
     # sometimes there are results all of which doens't mention the book title. So we run a while loop untill we get the most common words used, hence the title
-    
+
     indexDictionary = dict()
     for term in commonWords:
         termIndex = titleList[0].lower().split(' ').index(term)
