@@ -1,1 +1,0 @@
-bookObject['subtitle'] if bookObject['subtitle'] != None else ''
