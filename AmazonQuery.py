@@ -4,7 +4,7 @@ from requests import get, head
 from bs4 import BeautifulSoup
 from concurrent.futures import Executor, ThreadPoolExecutor
 import re
-from globalFunctions import HEADERS(), extractText
+from globalFunctions import HEADERS, extractText, extractText
 
 
 class BookData:
@@ -60,8 +60,3 @@ def searchAmazon(query):
     executor = ThreadPoolExecutor()
     ((executor.map(extractBookData, linksList)))
     # return
-
-
-initTime = time.time()
-(searchAmazon('On the Origin of Species'))
-print(time.time() - initTime)

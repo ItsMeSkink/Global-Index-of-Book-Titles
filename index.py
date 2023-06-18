@@ -51,7 +51,7 @@ from ScrappingClasses.googleWebpage import googleResults, googleWebpage
 
 # print(getGoogleResultsRecurring('Buy Python Programming A Modular Approach'))
 
-results = (googleResults('Buy Python Programming : A Modular Approach book site:amazon.com'))
+results = (googleResults('9789389053029'))
 # results = googleResults('fajkdshfkjsadfah')
 
 print(results.titles)

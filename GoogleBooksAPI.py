@@ -1,9 +1,9 @@
+from functools import reduce
 import json
-from turtle import st
-from outcome import Value
 from requests import get
 from termcolor import colored
-from globalFunctions import HEADERS()
+from ExtractMostCommonPhrase import extractMostCommonPhrase
+from globalFunctions import HEADERS
 
 
 def checkAndReturnForIndustryIdentifier(item):
@@ -29,7 +29,13 @@ class GoogleBook:
     def __init__(self, item):
         self.item = item
         self.title = item['title']
-        self.authors = item['authors']
+
+    @property
+    def authors(self):
+        try:
+            return self.item['authors']
+        except:
+            pass
 
     @property
     def subtitle(self):
@@ -88,15 +94,24 @@ class GoogleBook:
         })
 
 
+def returnListWithoutNone(array):
+    return list(filter(lambda item: True if item != None else False, array))
+
+
 class googleBooksSearch:
     def __init__(self, isbn=int(), title=str(), author=str()):
         if (isbn != int()):
+            self.isbn = isbn
             self.query = f'isbn:{isbn}'
         elif (title != str() and author != str()):
+            self.title = title
+            self.author = author
             self.query = f"intitle:{title} inauthor:{author}"
         elif (title != str()):
+            self.title = title
             self.query = f'intitle:{title}'
         elif (author != str()):
+            self.author = author
             self.query = f'inauthor:{author}'
         else:
             raise KeyError(
@@ -106,7 +121,6 @@ class googleBooksSearch:
         if (statusCode == 404 or json.loads(self.webpage.text)['totalItems'] == 0):
             raise ValueError(colored('Book Not Found. Branch Out', 'red'))
         elif (statusCode == 429):
-            # print(colored('Try Again Later Network Overload', 'red'))
             raise RuntimeError(
                 colored('Try Again Later, Network Overload 429'))
         elif (statusCode == 200):
@@ -136,85 +150,60 @@ class googleBooksSearch:
 
     @property
     def titles(self):
-        return list(map(lambda item: item['title'], self.items))
+        titlesList = list(
+            map(lambda bookObject: GoogleBook(bookObject).title, self.items))
+
+        return returnListWithoutNone(titlesList)
 
     @property
     def subtitles(self):
-        def checkAndReturnSubtitle(item):
-            try:
-                return item['subtitle']
-            except:
-                pass
-        return list(map(checkAndReturnSubtitle, self.items))
+        subtitlesList = list(
+            map(lambda bookObject: GoogleBook(bookObject).subtitle, self.items))
+
+        return list(filter(lambda subtitle: True if subtitle != None else False, subtitlesList))
+        # return subtitlesList
 
     @property
     def authors(self):
-        def checkAndReturnForAuthors(item):
-            try:
-                return item['authors']
-            except:
-                pass
+        authorsListsList = list(
+            map(lambda bookObject: GoogleBook(bookObject).authors, self.items))
 
-        return (list(map(checkAndReturnForAuthors, self.items)))
+        return reduce(lambda x, y: x + y, list(authorsListsList))
 
     @property
     def descriptions(self):
-        def checkAndReturnDescription(item):
-            try:
-                return item['description']
-            except:
-                pass
-        return list(map(checkAndReturnDescription, self.items))
+        descriptionsList = list(
+            map(lambda bookObject: GoogleBook(bookObject).description, self.items))
+
+        return returnListWithoutNone(descriptionsList)
 
     @property
     def publishers(self):
-        def checkAndReturnPublisher(item):
-            try:
-                return item['publisher']
-            except:
-                pass
-        return list(map(checkAndReturnPublisher, self.items))
+        publishersList = list(
+            map(lambda bookObject: GoogleBook(bookObject).publisher, self.items))
+
+        return returnListWithoutNone(publishersList)
 
     @property
     def pageCounts(self):
-        def checkAndReturnForPageCount(item):
-            try:
-                return item['pageCount']
-            except:
-                pass
-        return list(map(checkAndReturnForPageCount, self.items))
+        pageCountsList = list(
+            map(lambda bookObject: GoogleBook(bookObject).pages, self.items))
+
+        return returnListWithoutNone(pageCountsList)
 
     @property
     def isbns(self):
+        isbnsList = list(
+            map(lambda bookObject: GoogleBook(bookObject).isbn, self.items))
 
-        industrialIdentifiersList = list(
-            map(checkAndReturnForIndustryIdentifier, self.items))
-        # we get the industrialIdentifersArray which contain the "fucked up" data of ISBN10 and ISBN13
-
-        return industrialIdentifiersList
-        # it is not necessary that for every result there would be ISBN13 available
+        return returnListWithoutNone(isbnsList)
 
     @property
     def thumbnails(self):
-        def checkAndReturnGoogleBooksThubnail(item):
-            try:
-                return item['imageLinks']['thumbnail']
-            except:
-                pass
+        thumbnailList = list(
+            map(lambda bookObject: GoogleBook(bookObject).thumbnail, self.items))
 
-        googleBooksThumbnails = list(
-            map(checkAndReturnGoogleBooksThubnail, self.items))
-
-        def checkAndReturnAbeBookThumbnail(isbn):
-            abeBooksThumbnailUrl = f"https://pictures.abebooks.com/isbn/{isbn}-us.jpg"
-            if (get(abeBooksThumbnailUrl, headers=HEADERS()).status_code == 200):
-                return abeBooksThumbnailUrl
-
-        abeBooksThumbnails = list(
-            map(checkAndReturnAbeBookThumbnail, self.isbns))
-        allThumbnails = googleBooksThumbnails + abeBooksThumbnails
-
-        return list(filter(lambda url: True if url != None else url, allThumbnails))
+        return returnListWithoutNone(thumbnailList)
 
     @property
     def data(self):
@@ -227,15 +216,26 @@ class googleBooksSearch:
         return str(self.data)
         # more methods needed when "book not found"
 
-    def __call__(self):
-        statusCode = self.webpage.status_code
-        if (statusCode == 404):
-            print(colored('Not Retrieved. Branch Out', 'red'))
-        elif (statusCode == 429):
-            print(colored('Try Again Later Network Overload', 'red'))
-        elif (statusCode == 200):
-            print(colored('Successfully Retreived'))
+    # --------------------------------------------------------------------------------------------
 
+    @property
+    def similars(self):
+        book = googleBooksSearch(self.isbn)
+        bookAgain = googleBooksSearch(
+            title=book.titles[0], author=book.authors[0])
 
-book = (googleBooksSearch(title="Python Programming A Modular Approach").titles)
-print(book)
+        return bookAgain.data
+
+    def extractTitleAuthor(self):
+        titles = list(
+            map(lambda bookObject: bookObject['title'] + ' ' + (bookObject['subtitle'] if bookObject['subtitle'] != None else ''), self.similars))
+        authors = list(
+            map(lambda bookObject: bookObject['authors'][0], self.similars))
+
+        extractedTitle = extractMostCommonPhrase(titles)
+        extractedAuthor = extractMostCommonPhrase(authors)
+
+        return {
+            "title": extractedTitle,
+            "author": extractedAuthor
+        }
