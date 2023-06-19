@@ -16,8 +16,11 @@ def extractText(text):
     return re.sub(r'<.*?>', '', str(text))
 
 
-def extractURL(a):
-    return (re.search(r"https://[\w\W]+&sa=U&ved", a['href']).group().replace('&sa=U&ved', ''))
+def extractURL(a, suffix=r"&sa=U&ved"):
+    try:
+        return (re.search(r"https://[\w\W]+" + suffix, a['href']).group().replace(suffix, ''))
+    except:
+        return a['href']
     # .group() returns the matched string
 
 # ------------------------------------------------------------------- #

@@ -1,85 +1,47 @@
-from concurrent.futures import Executor, ThreadPoolExecutor
 from ScrappingClasses.amazonWebpage import amazonWebpage
-from ScrappingClasses.googleWebpage import googleResults, googleWebpage
-from termcolor import colored
+from ScrappingClasses.googleWebpage import googleResults
+from globalFunctions import threadMap
 
-executor = ThreadPoolExecutor()
-
-
-# isbnInput = int(input('Enter ISBN: '))
 isbnInput = 9789380703688
+# origin of species
 isbnInput = 9789332585348
+# python programming
+
+resultsFromISBN = googleResults(f'"{isbnInput}" Book')
+# this remains constant, no moving up in the list
+# we only "titles" from this
 
 
-isbnQueryResults = googleResults(f'Buy "{isbnInput}" Book')
-print(isbnQueryResults.titles)
-n = 0
-print(len(isbnQueryResults.titles))
-
-while n < len(isbnQueryResults.titles):
-    buyQueryResults = googleResults(
-        isbnQueryResults.titles[n] + ' site:amazon.com')
+def getFirstAmazonResult(currentIndex=0):
+    if (currentIndex > len(resultsFromISBN.titles)):
+        raise ValueError('This is the end of the line. No Amazon Results here')
 
     try:
-        amazonQueryResults = buyQueryResults.hrefs
-        print(amazonQueryResults, 'in try for amazon web scrap')
+        resultsFromBuyString = googleResults(
+            resultsFromISBN.titles[currentIndex] + ' site:amazon.com').hrefs
+        # this would yield the amazon links
+        # we need the HREFS from this
+
         try:
-            # appropriate results
-            print()
-            # print(amazonQueryResults[0])
-            amazonScrap1 = (amazonWebpage(amazonQueryResults[0]))
-            # amazonScrap1 = amazonWebpage(amazonQueryResults[0])
-            # print('title')
-            # executor.submit(print, amazonScrap1.title)
-            # print('authors')
-            # executor.submit(print, amazonScrap1.authors)
-            # print('description')
-            # executor.submit(print, amazonScrap1.description)
-            # print('publisher')
-            # executor.submit(print, amazonScrap1.publisher)
-            # print('thumbnail')
-            # executor.submit(print, amazonScrap1.thumbnail)
-            # print('about authors')
-            # executor.submit(print, amazonScrap1.aboutAuthors)
-            # print('about pages')
-            # executor.submit(print, amazonScrap1.pages)
+            # this would yield the title if available
+            amazonResult = amazonWebpage(resultsFromBuyString[0]).title
+            # print(amazonResult)
 
-            print('title')
-            print(amazonScrap1.title)
-            print('authors')
-            print(amazonScrap1.authors)
-            print('description')
-            print(amazonScrap1.description)
-            print('publisher')
-            print(amazonScrap1.publisher)
-            print('thumbnail')
-            print(amazonScrap1.thumbnail)
-            print('about authors')
-            print(amazonScrap1.aboutAuthors)
-            print('pages')
-            print(amazonScrap1.pages)
+            print(list(threadMap(lambda href: amazonWebpage(
+                href).data, resultsFromBuyString)))
 
-            print(colored('results for ' +
-                  isbnQueryResults.titles[n] + ' site:amazon.com', 'green'))
-            break
-
-        except Exception as e:
-            # Inappropriate Results
-            print(colored(e, 'red'))
-
-            if (e == 'You have been CAPTCHAd, change header'):
-                break
-            # finishes the program because it isn't the error of data error but runtime error
-            print()
-            print(colored('in except in except for inappropriate results for ' +
-                  isbnQueryResults.titles[n] + ' site:amazon.com', 'red'))
-            print()
-            n += 1
+        except:
+            # if title unavailable means the data is inappropriate, it would again run the entire function for the next isbn title
+            print(
+                f'No Amazon result for {resultsFromISBN.titles[currentIndex] + " site:amazon.com"}')
+            getFirstAmazonResult(currentIndex + 1)
+            # on the basis of the first result, other amazon links would be mapped and data would be retrieved
 
     except:
-        print()
-        print(colored('in except for no results for ' +
-              isbnQueryResults.titles[n] + ' site:amazon.com', 'red'))
-        n += 1
-        print()
-        # no results
+        # if there are no hrefs available, run the function again for the next isbn title
+        print(
+            f'No HREFs for {resultsFromISBN.titles[currentIndex] + " site:amazon.com"}')
+        getFirstAmazonResult(currentIndex + 1)
+
+
+getFirstAmazonResult()

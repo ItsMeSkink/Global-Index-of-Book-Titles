@@ -1,6 +1,7 @@
+import re
 from termcolor import colored
 from ScrappingClasses.commons import webData
-from globalFunctions import extractText
+from globalFunctions import extractText, extractURL, threadMap
 
 
 class amazonWebpage(webData):
@@ -22,16 +23,25 @@ class amazonWebpage(webData):
 
     @property
     def title(self):
-        return extractText(self.soup.select_one('span#productTitle')).strip()
+        try:
+            return extractText(self.soup.select_one('span#productTitle')).strip()
+        except:
+            pass
 
     @property
     def description(self):
-        return extractText(self.soup.select_one('div#bookDescription_feature_div div.a-expander-content')).strip()
+        try:
+            return extractText(self.soup.select_one('div#bookDescription_feature_div div.a-expander-content')).strip()
+        except:
+            pass
 
     @property
     def authors(self):
-        authors = (self.soup.select('span.author a'))
-        return list(map(extractText, authors))
+        try:
+            authors = (self.soup.select('span.author a'))
+            return list(map(extractText, authors))
+        except:
+            pass
 
     @property
     def pages(self):
@@ -45,15 +55,24 @@ class amazonWebpage(webData):
 
     @property
     def publisher(self):
-        return extractText(self.soup.select_one('div#rpi-attribute-book_details-publisher')).replace('Publisher', '').strip()
+        try:
+            return extractText(self.soup.select_one('div#rpi-attribute-book_details-publisher')).replace('Publisher', '').strip()
+        except:
+            pass
 
     @property
     def aboutAuthors(self):
-        return extractText(self.soup.select_one('div#editorialReviews_feature_div div.a-padding-small')).strip()
+        try:
+            return extractText(self.soup.select_one('div#editorialReviews_feature_div div.a-padding-small')).strip()
+        except:
+            pass
 
     @property
     def thumbnail(self):
-        return self.soup.select_one('img#imgBlkFront')['src']
+        try:
+            return self.soup.select_one('img#imgBlkFront')['src']
+        except:
+            pass
 
     @property
     def data(self):

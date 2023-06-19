@@ -1,73 +1,53 @@
-import time
-from ScrappingClasses.amazonWebpage import amazonWebpage
+import os
+
+from termcolor import colored
+from GoogleBooksAPI import GoogleBooksSearch
 from ScrappingClasses.abebooksWebpage import abeBookSearchPage, abeBooksWebpage
-from ScrappingClasses.googleWebpage import googleResults, googleWebpage
+from ScrappingClasses.amazonWebpage import amazonWebpage
+from ScrappingClasses.googleWebpage import googleResults
+from globalFunctions import threadMap
+
+os.system('start microsoft.windows.camera:')
+
+book = GoogleBooksSearch(input('Enter an ISBN: '))
+
+extract = book.extractTitleAuthor()
+baseQuery = f' {extract["title"]} by {extract["author"]}'
+
+print(baseQuery)
+
+amazonSearchResults = googleResults(baseQuery + ' site:amazon.com')
+abebooksSearchResults = googleResults(baseQuery + ' site:abebooks.com')
+
+print(amazonSearchResults.hrefs)
+print(abebooksSearchResults.hrefs)
+
+# a = ['https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean/dp/1544507852', 'https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512279', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean/dp/1544507879', 'https://www.amazon.com/Cant-Hurt-Me-Master-Your-ebook/dp/B07H453KGH', 'https://www.amazon.com/Cant-Hurt-Me-David-Goggins-audiobook/dp/B07KKP62FW', 'https://www.amazon.com/cant-hurt-me-david-goggins-book/s%3Fk%3Dcan%2527t%2Bhurt%2Bme%2Bdavid%2Bgoggins%2Bbook', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean-ebook/dp/B085TCV73F', 'https://www.amazon.com/Cant-Hurt-Me-Master-Goggins/dp/B09SGFDBFD']
 
 
-# print(amazonWebpage('https://www.amazon.com/Python-Programming-Taneja-Sheetal-Naveen/dp/9332585342').aboutAuthors)
-# print(googleWebpage('Buy 9789332585348 Book').titles)
-# print(googleWebpage('Buy 9789380703688').titles)
-# print(amazonWebpage('https://www.amazon.com/Origin-Species-Penguin-Classics/dp/0140439129/ref=sr_1_1_sspa?keywordsof+species').title)
+def scrapAmazonWebpage(href):
+    try:
+        return amazonWebpage(href).data
+    except:
+        return colored(href, 'red')
 
 
-# print(amazonWebpage('https://www.amazon.com/errors/validateCaptcha'))
+amazonScraped = list(
+    threadMap(lambda href: scrapAmazonWebpage(href), amazonSearchResults))
 
 
-# abe = (abeBooksWebpage(
-#     'https://www.abebooks.com/servlet/BookDetailsPL?bi=31450032895&searchurl=ds%3D20%26kn%3Don%2Bof%2Bthe%2Borigin%2Bof%2Bspecies%26sortby%3D17&cm_sp=snippet-_-srp1-_-image1'))
-# abe = (abeBooksWebpage(
-#     'https://www.abebooks.com/9789332585348/Python-Programming-Modular-Approach-NAVEEN-9332585342/plp'))
+def scrapAbeBooksWebpage(href):
+    abebooksScrapResults = []
+    try:
+        if (href.startswith('https://www.abebooks.com/servlet/SearchResults') == True):
+            abebooksScrapResults += abeBookSearchPage(href)
+        else:
+            abebooksScrapResults.join([abeBooksWebpage(href).data])
 
-# print((abe.data))
-
-# while True:
-#     print(bookResults.webHeaders)
-#     try:
-#         print(bookResults.titles)
-#         print('try')
-#     except:
-#         try:
-#             print(bookResults.titles)
-#             print('except')
-#             exceptCount += 1
-#         except Exception as e:
-#             print(e)
-#             print(exceptCount)
-#             break
+        return abebooksScrapResults
+    except:
+        return colored(href, 'red')
 
 
-# def getGoogleResultsRecurring(query):
-#     bookResults = (googleWebpage(query))
-#     try:
-#         data = (bookResults.data)
-
-#         if data == []:
-#             getGoogleResultsRecurring()
-#         # variable declaration is necessary
-#         return (data)
-#     except Exception as e:
-#         getGoogleResultsRecurring()
-
-
-# print(getGoogleResultsRecurring('Buy Python Programming A Modular Approach'))
-
-results = (googleResults('9789389053029'))
-# results = googleResults('fajkdshfkjsadfah')
-
-print(results.titles)
-# I have observed that the first time that we print the data can print a blank but if we print it the second time using a second call it can yield a useful data.
-# An error I'm getting is related to lxml and it returns a blank array what I have done to solve it is reoccur the function if it returns a blank array other than that any exception would also reoccur the function.
-# Very successful outcome of applying a recurring algorithm to retrieve the titles for definite Results is that no matter whattime it takes it would definitely return the titles or the data
-
-
-# abeBook = abeBooksWebpage('https://www.abebooks.com/servlet/BookDetailsPL?bi=31082850882')
-
-# print(abeBook.data)
-
-
-# abeBookSearch = abeBookSearchPage(
-#     'https://www.abebooks.com/servlet/SearchResults?cm_sp=plpafe-_-all-_-soft&an=naveen%20kumar&bi=s&n=100121501&sortby=17&tn=python%20programming%20modular%20approach')
-# print(abeBookSearch.booksData)
-
-# with open('.js', 'w') as jsFile:
-#     jsFile.write(f'a={abeBookSearch.booksData}')
+abebooksScraped = list(
+    threadMap(lambda href: scrapAbeBooksWebpage(href), abebooksSearchResults))

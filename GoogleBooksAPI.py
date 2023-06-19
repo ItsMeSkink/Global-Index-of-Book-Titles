@@ -1,8 +1,10 @@
 from functools import reduce
 import json
+import re
+from turtle import color
 from requests import get
 from termcolor import colored
-from ExtractMostCommonPhrase import extractMostCommonPhrase
+from Algorithms.ExtractMostCommonPhrase import extractMostCommonPhrase
 from globalFunctions import HEADERS
 
 
@@ -29,6 +31,7 @@ class GoogleBook:
     def __init__(self, item):
         self.item = item
         self.title = item['title']
+        # self.title = re.sub(r'[^\w\s]', '', item['title'])
 
     @property
     def authors(self):
@@ -98,7 +101,20 @@ def returnListWithoutNone(array):
     return list(filter(lambda item: True if item != None else False, array))
 
 
-class googleBooksSearch:
+class GoogleBooksSearch:
+    """
+    This method takes in 3 types of inputs
+    1) ISBN
+    2) Title
+    3) Author
+
+    Two types of inputs are frequently given -> 1) ISBN, 2) Title + Author
+
+    The yield is always a list (1 item list in ISBN input and multiple items list in Title + Author input)
+    Due to the list nature or all output, to get the title, we always write titles[0] in case of ISBN
+    In input of Title + Author, titles of all objects are yielded
+    """
+
     def __init__(self, isbn=int(), title=str(), author=str()):
         if (isbn != int()):
             self.isbn = isbn
@@ -135,75 +151,77 @@ class googleBooksSearch:
         statusCode = self.webpage.status_code
         return colored(statusCode, 'green' if statusCode == 200 else 'red')
 
-    @property
-    def rawItems(self):
-        try:
-            return json.loads(self.webpage.text)['items']
-        except Exception as ke:
-            # print(colored('Not Retrieved. Branch Out', 'red'))
-            # here another 3rd function would go which would retreive similar strucuted data from somewhere else
-            pass
-
-    @property
-    def items(self):
-        return list(map(lambda item: item['volumeInfo'], self.rawItems))
 
     @property
     def titles(self):
         titlesList = list(
-            map(lambda bookObject: GoogleBook(bookObject).title, self.items))
+            map(lambda bookObject: (bookObject)['title'], self.data))
 
         return returnListWithoutNone(titlesList)
 
     @property
     def subtitles(self):
         subtitlesList = list(
-            map(lambda bookObject: GoogleBook(bookObject).subtitle, self.items))
+            map(lambda bookObject: (bookObject)["subtitle"], self.data))
 
         return list(filter(lambda subtitle: True if subtitle != None else False, subtitlesList))
-        # return subtitlesList
+        # fitlers and return subtitlesList
 
     @property
     def authors(self):
         authorsListsList = list(
-            map(lambda bookObject: GoogleBook(bookObject).authors, self.items))
+            map(lambda bookObject: bookObject['authors'], self.data))
 
-        return reduce(lambda x, y: x + y, list(authorsListsList))
+        if (authorsListsList != [None] or authorsListsList != None):
+            return reduce(lambda x, y: x + y, (authorsListsList))
+        else:
+            return [str()]
 
     @property
     def descriptions(self):
         descriptionsList = list(
-            map(lambda bookObject: GoogleBook(bookObject).description, self.items))
+            map(lambda bookObject: (bookObject)['description'], self.data))
 
         return returnListWithoutNone(descriptionsList)
 
     @property
     def publishers(self):
         publishersList = list(
-            map(lambda bookObject: GoogleBook(bookObject).publisher, self.items))
+            map(lambda bookObject: (bookObject)['publisher'], self.data))
 
         return returnListWithoutNone(publishersList)
 
     @property
     def pageCounts(self):
         pageCountsList = list(
-            map(lambda bookObject: GoogleBook(bookObject).pages, self.items))
+            map(lambda bookObject: (bookObject)['pages'], self.data))
 
         return returnListWithoutNone(pageCountsList)
 
     @property
     def isbns(self):
         isbnsList = list(
-            map(lambda bookObject: GoogleBook(bookObject).isbn, self.items))
+            map(lambda bookObject: (bookObject)['isbn'], self.data))
 
         return returnListWithoutNone(isbnsList)
 
     @property
     def thumbnails(self):
         thumbnailList = list(
-            map(lambda bookObject: GoogleBook(bookObject).thumbnail, self.items))
+            map(lambda bookObject: (bookObject)['thumbnail'], self.data))
 
         return returnListWithoutNone(thumbnailList)
+
+    @property
+    def rawItems(self):
+        try:
+            return json.loads(self.webpage.text)['items']
+        except Exception as ke:
+            pass
+
+    @property
+    def items(self):
+        return list(map(lambda item: item['volumeInfo'], self.rawItems))
 
     @property
     def data(self):
@@ -220,22 +238,38 @@ class googleBooksSearch:
 
     @property
     def similars(self):
-        book = googleBooksSearch(self.isbn)
-        bookAgain = googleBooksSearch(
-            title=book.titles[0], author=book.authors[0])
+        book = GoogleBooksSearch(self.isbn)
+        bookAgain = GoogleBooksSearch(
+            title=book.titles[0], author=book.authors[0].split(' ')[-1])
+        # use the author's last name for search
 
         return bookAgain.data
 
     def extractTitleAuthor(self):
-        titles = list(
-            map(lambda bookObject: bookObject['title'] + ' ' + (bookObject['subtitle'] if bookObject['subtitle'] != None else ''), self.similars))
-        authors = list(
-            map(lambda bookObject: bookObject['authors'][0], self.similars))
+        try:
+            titles = list(
+                map(lambda bookObject: re.sub(r'[^\w\s]', '', bookObject['title']), self.similars))
 
-        extractedTitle = extractMostCommonPhrase(titles)
-        extractedAuthor = extractMostCommonPhrase(authors)
+            authors = list(
+                map(lambda bookObject: re.sub(r'[^\w\s]', '', bookObject['authors'][0]), self.similars))
 
-        return {
-            "title": extractedTitle,
-            "author": extractedAuthor
-        }
+            extractedTitle = extractMostCommonPhrase(titles).strip()
+            extractedAuthor = extractMostCommonPhrase(authors).strip()
+
+            return {
+                "title": extractedTitle,
+                "author": extractedAuthor
+            }
+
+        except Exception as e:
+            print(colored(e, 'red'))
+
+            if (self.authors == [None]):
+                titles = list(map(lambda bookObject: bookObject['title'] + ' ' + (
+                    bookObject['subtitle'] if bookObject['subtitle'] != None else ''), self.data))
+
+                return {"title":  extractMostCommonPhrase(titles).strip(),
+                        'author': ''}
+
+            else:
+                raise ReferenceError('Error in Titles')

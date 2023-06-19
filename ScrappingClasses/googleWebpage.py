@@ -1,19 +1,25 @@
 from mimetypes import init
 import re
+from bs4 import BeautifulSoup
 from requests import get
 from termcolor import colored
 from ScrappingClasses.commons import webData
-from globalFunctions import extractText, extractURL, threadMap
+from globalFunctions import HEADERS, extractText, extractURL, threadMap
 
 
 class GoogleResult:
     def __init__(self, resultElement):
         self.resultElement = resultElement
 
+        if (self.title == None):
+            raise ValueError('No Title Recieved')
+
     @property
     def title(self):
-        return (extractText(self.resultElement.select_one('div.BNeawe.vvjwJb')))
-        # resultElement is a soup itself
+        soup = BeautifulSoup(get(self.href, headers=HEADERS()).text, 'lxml')
+        # this prints the entire title by going inside the webpage and extracting the title
+        title = extractText(soup.select_one('title'))
+        return (title)
 
     @property
     def href(self):
@@ -29,6 +35,8 @@ class GoogleResult:
     def json(self):
         return self.data
 
+# -------------------------------------------
+
 
 class googleWebpage(webData):
     def __init__(self, query):
@@ -41,39 +49,29 @@ class googleWebpage(webData):
 
     @property
     def titles(self):
-        titles = list(
-            threadMap(extractText, self.soup.select('div.egMi0.kCrYT a h3')))
-
-        if (titles == []):
-            raise ValueError('Titles not recieved')
-        else:
-            return titles
+        return list(map(lambda resultObject: resultObject['href'], self.data))
 
     @property
     def hrefs(self):
-
-        allHrefs = list(threadMap(extractURL, self.soup.select('div.egMi0 a')))
-        # extracts a url from the unaccessible hrefs and create a list
-
-        if (allHrefs == []):
-            raise ValueError('HREFS not retrieved')
-
-        else:
-            return allHrefs
+        return list(map(lambda resultObject: resultObject['href'], self.data))
 
     @property
     def data(self):
         resultElements = self.soup.select('div.egMi0.kCrYT')
-        return list(map(lambda element: GoogleResult(element).json(), resultElements))
+        return list(threadMap(lambda element: GoogleResult(element).json(), resultElements))
 
+# -------------------------------------------
 
 # MAIN USE IN OTHER ALGORITHMS
+
+
 class googleResults:
     def __init__(self, query):
         self.query = query
         self.titleExceptCount = 0
         self.hrefsExceptCount = 0
         self.dataExceptCount = 0
+        self.data
 
         # raise an error when after 5 recurrings it still doesn't yield data (meaning there isn't any data available).
     @property
@@ -105,3 +103,5 @@ class googleResults:
 
     def json(self):
         return self.data
+
+# -------------------------------------------
