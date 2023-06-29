@@ -1,10 +1,10 @@
 import re
 from termcolor import colored
-from ScrappingClasses.commons import webData
+from Scrappers.webpageData import webpageData
 from globalFunctions import extractText, extractURL, threadMap
 
 
-class amazonWebpage(webData):
+class AmazonProduct(webpageData):
     def __init__(self, url):
         self.url = url
 

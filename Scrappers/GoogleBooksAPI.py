@@ -95,6 +95,10 @@ class GoogleBook:
             "subtitle": self.subtitle,
             "isbn": self.isbn,
         })
+    
+    @property
+    def data(self):
+        return self.json()
 
 
 def returnListWithoutNone(array):
@@ -139,12 +143,11 @@ class GoogleBooksSearch:
         elif (statusCode == 429):
             raise RuntimeError(
                 colored('Try Again Later, Network Overload 429'))
-        elif (statusCode == 200):
-            print(colored('Successfully Retreived', 'green'))
-
+            
     @property
     def webpage(self):
         return (get(f'https://www.googleapis.com/books/v1/volumes?q={self.query}', headers=HEADERS()))
+        # proxies not required
 
     @property
     def statusCode(self):

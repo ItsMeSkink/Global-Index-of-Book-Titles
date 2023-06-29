@@ -3,11 +3,11 @@ import re
 from bs4 import BeautifulSoup
 from requests import get
 from termcolor import colored
-from ScrappingClasses.commons import webData
-from globalFunctions import HEADERS, extractText, extractURL, threadMap
+from Scrappers.webpageData import webpageData
+from globalFunctions import HEADERS, extractText, extractURL, processMap, threadMap
 
 
-class GoogleResult:
+class SearchResult:
     def __init__(self, resultElement):
         self.resultElement = resultElement
 
@@ -16,9 +16,10 @@ class GoogleResult:
 
     @property
     def title(self):
-        soup = BeautifulSoup(get(self.href, headers=HEADERS()).text, 'lxml')
-        # this prints the entire title by going inside the webpage and extracting the title
-        title = extractText(soup.select_one('title'))
+        title = extractText(self.resultElement.select_one('h3'))
+        # soup = BeautifulSoup(get(self.href, headers=HEADERS()).text, 'lxml')
+        # # this prints the entire title by going inside the webpage and extracting the title
+        # title = extractText(soup.select_one('title'))
         return (title)
 
     @property
@@ -38,10 +39,9 @@ class GoogleResult:
 # -------------------------------------------
 
 
-class googleWebpage(webData):
+class SearchResults(webpageData):
     def __init__(self, query):
         self.url = f'https://google.com/search?hl=en&q={query}'
-
         statusCode = self.webpage.status_code
 
         if (statusCode != 200):
@@ -49,7 +49,7 @@ class googleWebpage(webData):
 
     @property
     def titles(self):
-        return list(map(lambda resultObject: resultObject['href'], self.data))
+        return list(map(lambda resultObject: resultObject['title'], self.data))
 
     @property
     def hrefs(self):
@@ -58,18 +58,16 @@ class googleWebpage(webData):
     @property
     def data(self):
         resultElements = self.soup.select('div.egMi0.kCrYT')
-        return list(threadMap(lambda element: GoogleResult(element).json(), resultElements))
+        return list(threadMap(lambda element: SearchResult(element).json(), resultElements))
 
 # -------------------------------------------
 
 # MAIN USE IN OTHER ALGORITHMS
 
 
-class googleResults:
+class GoogleSearch:
     def __init__(self, query):
         self.query = query
-        self.titleExceptCount = 0
-        self.hrefsExceptCount = 0
         self.dataExceptCount = 0
         self.data
 
@@ -84,9 +82,9 @@ class googleResults:
 
     @property
     def data(self):
-        bookResults = googleWebpage(self.query)
+        bookResults = SearchResults(self.query)
+        # this calls an absolute new instance which has different header and different proxy
 
-        print(self.dataExceptCount)
         if (self.dataExceptCount > 3):
             raise ValueError(f'No Results for this {self.query}')
 

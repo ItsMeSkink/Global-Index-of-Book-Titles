@@ -1,8 +1,11 @@
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import json
 from mimetypes import init
+import multiprocessing
+from multiprocessing.pool import ThreadPool
 from random import choice
 import re
+import threading
 
 
 def readJSONFile(attribute):
@@ -41,21 +44,19 @@ def HEADERS():
     g = choice(range(140, 157))
 
     headersList = [
-        f'Mozilla/{a}.0',
         f'X11; Linux x86_64 KHTML/ like Gecko',
         f'AppleWebkit/{c}.{d} Safari/{c}.{d}',
         f'Chrome/{e}.0.{f}.{g}',
     ]
 
-    numberOfHeaders = range(choice(range(1, 4)))
-    customHeader = ""
+    numberOfHeaders = range(choice(range(1, 3)))
+    customHeader = "Mozilla/5.0"
     for _ in numberOfHeaders:
         header = choice(headersList)
         headersList.remove(header)
 
         customHeader += f"{header} "
 
-    # return readJSONFile('headers')
 
     return {
         "User-Agent": customHeader.strip(),
@@ -68,3 +69,25 @@ def HEADERS():
 def threadMap(method, list):
     executor = ThreadPoolExecutor()
     return executor.map(method, list)
+
+
+def processMap(method, list):
+    executor = ProcessPoolExecutor()
+    return executor.map(method, list)
+
+class mapping:
+    def __init__(self, method, list):
+       self.method = method
+       self.list = list
+
+    @staticmethod
+    def threads(method, list):
+        executor = ThreadPoolExecutor()
+        return executor.map(method, list)
+    @staticmethod
+    def processes(method, list):
+        executor = ProcessPoolExecutor()
+        return executor.map(method, list)
+
+
+print(multiprocessing.cpu_count())

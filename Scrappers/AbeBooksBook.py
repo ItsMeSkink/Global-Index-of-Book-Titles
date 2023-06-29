@@ -4,13 +4,13 @@ from mimetypes import init
 import re
 from requests import get
 import soupsieve
-from ScrappingClasses.commons import webData
+from Scrappers.webpageData import webpageData
 from globalFunctions import HEADERS, extractText, threadMap
 
 
 # web process of abebooks for www.abebooks.com/servlet/search
 
-class abeBooksWebpage(webData):
+class AbeBooksBook(webpageData):
     def __init__(self, url):
         self.url = url
 
@@ -23,14 +23,10 @@ class abeBooksWebpage(webData):
             print(url)
             print(e)
 
-    @property
-    def webpage(self):
-        return get(self.url, headers=HEADERS(), allow_redirects=False)
-
     # this entire is if the url starts with https://www.abebooks.com/servlet
     @property
     def title(self):
-        return extractText(self.soup.select_one('h1#book-title span' if self.isServlet == True else "div.plp-title h1"))
+        return extractText(self.soup.select_one('h1#book-title' if self.isServlet == True else "div.plp-title h1"))
 
     @property
     def authors(self):
@@ -102,16 +98,16 @@ class abeBooksWebpage(webData):
 
     @property
     def isServlet(self):
-        if (self.url.startswith('https://www.abebooks.com/servlet')):
-            return True
-        else:
+        if ( self.url.startswith('https://www.abebooks.com/978')):
             return False
+        else:
+            return True
 
 # replace "sortby=17 with sortby=20"
 # remove "&bi=s&n=100121501"
 
 
-class abeBookSearchPage(webData):
+class AbeBooksSearchPage(webpageData):
     def __init__(self, url):
         url = re.sub(r'sortby=\d+&', 'sortby=20&', url)
         url = re.sub(r'bi=s&n=\d+&', '', url)
@@ -133,4 +129,8 @@ class abeBookSearchPage(webData):
 
     @property
     def booksData(self):
-        return (list(threadMap(lambda href: abeBooksWebpage(href).data, (self.titleHrefs + self.isbnHrefs))))
+        return (list(threadMap(lambda href: AbeBooksBook(href).data, (self.titleHrefs + self.isbnHrefs))))
+
+    @property
+    def data(self):
+        return self.booksData

@@ -1,26 +1,26 @@
 from bs4 import BeautifulSoup
-from requests import get
 from termcolor import colored
-from globalFunctions import HEADERS
 from bs4.builder import XMLParsedAsHTMLWarning
 import warnings
+from Proxying.Proxying import getRequest
+import sys
+
+from globalFunctions import HEADERS
+sys.path.insert(1, 'C:\\Users\\Wicke\\Desktop\\GIBT Draft 2\\')
 
 warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
 # this would filter the warnings even though the code does work
 
 
-class webData:
+class webpageData:
+    @property
+    def webpage(self):
+        return getRequest(self.url).res
+
     @property
     def statusCode(self):
         statusCode = self.webpage.status_code
         return colored(statusCode, 'green' if statusCode == 200 else 'red')
-
-    @property
-    def webpage(self):
-        self.webHeaders = HEADERS()
-        webHeaders = self.webHeaders
-
-        return get(self.url, headers=webHeaders)
 
     def __str__(self):
         return self.webpage.text
