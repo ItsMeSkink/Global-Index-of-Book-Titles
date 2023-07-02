@@ -1,4 +1,7 @@
-from requestOrigins import Smartproxy
+import sys
+sys.path.insert(1, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
+from Scrappers.requestOrigins import Smartproxy
+from utilities import readJSONFile, tryAndExcept
 
 url = "https://scrape.smartproxy.com/v1/tasks"
 
@@ -19,7 +22,7 @@ class GoogleSearch(Smartproxy):
             "google_nfpr": True,
             "google_safe_search": True
         }
-        self.authorisationCode = 'Basic VTAwMDAxMDg4NTA6UCRXMWQwMWM4ODQ3ODA2ZGNhOTdjNzllY2M4YjdiMDFiNDMw'
+        self.authorisationCode = readJSONFile('codes.json')['SERP']
         self.inContent = self.res.json()['results'][0]['content']
         self.results = self.inContent['results']
 
@@ -58,6 +61,11 @@ class GoogleSearch(Smartproxy):
     @property
     def data(self):
         return self.imagesData + self.organicData
+
+    @property
+    @tryAndExcept
+    def searchURL(self):
+        return self.res.json()['results'][0]['url']
 
     def json(self):
         return self.data

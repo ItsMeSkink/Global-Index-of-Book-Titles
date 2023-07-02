@@ -1,8 +1,8 @@
-from utilities import extractText, extractURL, tryAndExcept
+from utilities import concatenate, extractText, extractURL, returnListWithoutNone, threadMap, tryAndExcept
 from functools import reduce
 import re
+from Scrappers.requestOrigins import webpageData
 import sys
-from requestOrigins import webpageData
 sys.path.insert(2, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
 
 
@@ -12,8 +12,11 @@ addresses = {
         "authors": 'h2#book-author',
         "isbn": 'div#isbn',
         'description': 'div.synopsis-body',
-        'thumbnail': 'img#isbn-image',
+        'thumbnail': 'div#imageContainer img',
         "publisher": 'div.publisher span#book-publisher',
+        "alternate": {
+            'description': 'div.cf.detail-section div',
+        }
     },
     "isbnAddresses": {
         'title': 'div.plp-title',
@@ -75,10 +78,12 @@ class AbeBooksBook(webpageData):
         return self.entireTitleList[0].strip()
 
     @property
+    @tryAndExcept
     def subtitle(self):
         return self.entireTitleList[1].strip()
 
     @property
+    @tryAndExcept
     def authors(self):
         authorsList = extractText(self.soup.select_one(
             self.addresses['authors'])).split(',')
@@ -86,6 +91,7 @@ class AbeBooksBook(webpageData):
         return list(map(lambda author: author.strip(), authorsList))
 
     @property
+    @tryAndExcept
     def isbn(self):
         if (self.addressIndex == 1):
             isbnsTagList = (self.soup.select_one(
@@ -104,14 +110,24 @@ class AbeBooksBook(webpageData):
             return isbn13
 
     @property
+    @tryAndExcept
     def description(self):
-        return extractText(self.soup.select_one(self.addresses['description']))
+        defaultDescription = extractText(
+            self.soup.select_one(self.addresses['description']))
+
+        if defaultDescription == 'None':
+            return extractText(self.soup.select_one(
+                self.addresses['alternate']['description']))
+        else:
+            return defaultDescription
 
     @property
+    @tryAndExcept
     def thumbnail(self):
         return (self.soup.select_one(self.addresses['thumbnail']).get('src'))
 
     @property
+    @tryAndExcept
     def publisher(self):
         return extractText(self.soup.select_one(self.addresses['publisher'])).strip()
 
@@ -131,38 +147,54 @@ class AbeBooksBook(webpageData):
             'description': self.description,
             'isbn': self.isbn,
             'publisher': self.publisher,
-            'thumbnail': self.thumbnail
+            'thumbnail': self.thumbnail,
+            "url": self.url
         }
 
 
 # -----------------------------------------------------------
 
 
+searchAddresses = {
+    "searchResults": {
+        "listingElement": 'li.cf.result-item',
+        "titleHref": 'h2.title a',
+        'isbnHref': 'p.isbn a'
+    },
+    "browseListingsResults": {
+        "listingElement": 'td.result-details',
+        "titleHref": 'b a',
+    }
+
+}
+
+
 class AbeBooksSearchResult:
-    def __init__(self, element):
+    def __init__(self, element, addresses):
         self.element = element
+        self.addresses = addresses
 
     @property
     def title(self):
-        return extractText(self.element.select_one('h2.title a'))
+        return extractText(self.element.select_one(self.addresses['titleHref']))
 
     @property
     def titleHref(self):
-        return 'https://www.abebooks.com' + extractURL(self.element.select_one('h2.title a'))
+        return 'https://www.abebooks.com' + extractURL(self.element.select_one(self.addresses['titleHref']))
 
     @property
     @tryAndExcept
     def isbnHref(self):
-        return 'https://www.abebooks.com' + extractURL(self.element.select_one('p.isbn a'))
+        return 'https://www.abebooks.com' + extractURL(self.element.select_one(self.addresses['isbnHref']))
 
     @property
     def data(self):
         return {
             'title': self.title,
-            'hrefs': [
+            'hrefs': returnListWithoutNone([
                 self.titleHref,
                 self.isbnHref
-            ]
+            ])
         }
 
 
@@ -172,6 +204,11 @@ class AbeBooksSearch(webpageData):
         url = re.sub(r'bi=s&n=\d+&', '', url)
         self.url = url
 
+        if (url.startswith('https://www.abebooks.com/servlet/BrowseListingsResults') == True):
+            self.addresses = searchAddresses['browseListingsResults']
+        else:
+            self.addresses = searchAddresses['searchResults']
+
     @property
     def titles(self):
         return list(map(lambda item: item['title'], self.data))
@@ -179,10 +216,20 @@ class AbeBooksSearch(webpageData):
     @property
     def hrefs(self):
         hrefsListLists = list(map(lambda item: item['hrefs'], self.data))
-        hrefsList = list((reduce(lambda x, y: x + y, hrefsListLists)))
-        return hrefsList
+        hrefsList = concatenate(hrefsListLists)
+        return returnListWithoutNone(hrefsList)
 
     @property
     def data(self):
-        searchElements = self.soup.select('li.cf.result-item')
-        return list(map(lambda element: AbeBooksSearchResult(element).data, searchElements))
+        searchElements = self.soup.select(self.addresses['listingElement'])
+
+        return list(map(lambda element: AbeBooksSearchResult(element, self.addresses).data, searchElements))
+
+    @property
+    def expandedData(self):
+
+        @tryAndExcept
+        def extractAbeBooksData(url):
+            return AbeBooksBook(url)
+
+        return list(threadMap(lambda url: extractAbeBooksData(url).data, self.hrefs))

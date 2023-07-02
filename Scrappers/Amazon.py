@@ -1,8 +1,8 @@
-from requestOrigins import Smartproxy
-import re
 import sys
 sys.path.insert(1, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
-from utilities import tryAndExcept
+import re
+from Scrappers.requestOrigins import Smartproxy
+from utilities import readJSONFile, tryAndExcept
 
 
 class AmazonProduct(Smartproxy):
@@ -14,7 +14,7 @@ class AmazonProduct(Smartproxy):
             "domain": "com",
             "device_type": "desktop"
         }
-        self.authorisationCode = 'Basic VTAwMDAxMDg4NDM6UCRXMWE0MGNlNjFmNTYzYTMyN2QyN2JhMzZiOThmYTc4N2Rl'
+        self.authorisationCode = readJSONFile('codes.json')['eCommerce']
 
         self.inContent = self.res.json()['results'][0]['content']
         self.entireTitleList = self.inContent['title'].split(':')
@@ -102,13 +102,11 @@ class AmazonProduct(Smartproxy):
             "isbn": self.isbn,
             "thumbnail": self.thumbnail,
             "rating": self.rating,
-            "categories": self.categories
+            "categories": self.categories,
+            "url": self.res.json()['results'][0]['url']
         }
 
         return data
 
     def json(self):
         return self.data
-
-
-print(AmazonProduct('B074VF6ZLM').data)

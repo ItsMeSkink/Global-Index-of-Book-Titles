@@ -1,4 +1,4 @@
-from utilities import headers, returnListWithoutNone, tryAndExcept
+from utilities import concatenate, headers, returnListWithoutNone, tryAndExcept
 from Algorithms.ExtractMostCommonPhrase import extractMostCommonPhrase
 import re
 from termcolor import colored
@@ -167,9 +167,8 @@ class GoogleBooksSearch:
 
     @property
     def thumbnails(self):
-        thumbnailsListLists = list(
-            map(lambda item: item['thumbnails'], self.data))
-        thumbnailsList = list(reduce(lambda x, y: x + y, thumbnailsListLists))
+        thumbnailsList = concatenate(list(
+            map(lambda item: item['thumbnails'], self.data)))
 
         return returnListWithoutNone(thumbnailsList)
 
@@ -206,5 +205,5 @@ class GoogleBooksSearch:
 
         return {
             'title': extractedTitle,
-            'authors': extractedAuthors
+            'author': extractedAuthors
         }

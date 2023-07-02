@@ -25,8 +25,8 @@ class Smartproxy:
 
     @property
     def res(self):
-        with open('sample.json', 'w') as file:
-            file.write(self.response.text)
+        # with open('sample.json', 'w') as file:
+        #     file.write(self.response.text)
         return self.response
 
     @property
@@ -61,4 +61,6 @@ class webpageData:
 
     @property
     def soup(self):
-        return BeautifulSoup(self.webpage.text, 'lxml')
+        soup =  BeautifulSoup(self.webpage.text, 'lxml')
+        soup.encode('utf-8')
+        return soup

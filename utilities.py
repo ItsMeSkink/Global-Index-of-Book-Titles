@@ -1,6 +1,16 @@
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+from functools import lru_cache, reduce
+import json
 from random import choice
 import re
+
+
+@lru_cache(maxsize=None)
+def readJSONFile(filename):
+    with open(filename, 'r') as file:
+        content = file.read()
+        jsonData = json.loads(content)
+        return jsonData
 
 
 def tryAndExcept(function):
@@ -55,7 +65,7 @@ def processMap(method, list):
 
 
 def extractText(text):
-    return re.sub(r'<.*?>', '', str(text))
+    return re.sub(r'<.*?>', '', str(text)).strip()
 
 
 def extractURL(a, suffix=r"&sa=U&ved"):
@@ -68,3 +78,7 @@ def extractURL(a, suffix=r"&sa=U&ved"):
 
 def returnListWithoutNone(array):
     return list(filter(lambda item: True if item != None else False, array))
+
+
+def concatenate(array):
+    return list(reduce(lambda x, y: x + y, array))

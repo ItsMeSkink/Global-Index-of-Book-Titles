@@ -1,817 +1,354 @@
-{
-  "kind": "books#volumes",
-  "totalItems": 2591,
-  "items": [
-    {
-      "kind": "books#volume",
-      "id": "rruOEAAAQBAJ",
-      "etag": "GLV7/6PmYf0",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/rruOEAAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits",
-        "subtitle": "An Easy & Proven Way to Build Good Habits & Break Bad Ones",
-        "authors": ["James Clear"],
-        "publisher": "National Geographic Books",
-        "publishedDate": "2018-10-16",
-        "description": "The #1 New York Times bestseller. Over 4 million copies sold! Tiny Changes, Remarkable Results No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. If you're having trouble changing your habits, the problem isn't you. The problem is your system. Bad habits repeat themselves again and again not because you don't want to change, but because you have the wrong system for change. You do not rise to the level of your goals. You fall to the level of your systems. Here, you'll get a proven system that can take you to new heights. Clear is known for his ability to distill complex topics into simple behaviors that can be easily applied to daily life and work. Here, he draws on the most proven ideas from biology, psychology, and neuroscience to create an easy-to-understand guide for making good habits inevitable and bad habits impossible. Along the way, readers will be inspired and entertained with true stories from Olympic gold medalists, award-winning artists, business leaders, life-saving physicians, and star comedians who have used the science of small habits to master their craft and vault to the top of their field. Learn how to: make time for new habits (even when life gets crazy); overcome a lack of motivation and willpower; design your environment to make success easier; get back on track when you fall off course; ...and much more. Atomic Habits will reshape the way you think about progress and success, and give you the tools and strategies you need to transform your habits--whether you are a team looking to win a championship, an organization hoping to redefine an industry, or simply an individual who wishes to quit smoking, lose weight, reduce stress, or achieve any other goal.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9780735211292"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "0735211299"
-          }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": false
+[
+  {
+    "task_id": "7081339096047567873",
+    "content": {
+      "ads": [
+        {
+          "pos": 1,
+          "asin": "1612681131",
+          "type": "organic_also_viewed",
+          "price": 7.49,
+          "title": "Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/81BE7eeKzAL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.7,
+          "location": "carousel",
+          "price_upper": 7.49,
+          "reviews_count": 88852,
+          "is_prime_eligible": false
         },
-        "pageCount": 0,
-        "printType": "BOOK",
-        "categories": ["Business & Economics"],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "preview-1.0.0",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
+        {
+          "pos": 2,
+          "asin": "8173711461",
+          "type": "organic_also_viewed",
+          "price": 13.99,
+          "title": "Wings of fire: An autobiography",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/61M4NTWpw7L._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.5,
+          "location": "carousel",
+          "price_upper": 13.99,
+          "reviews_count": 14863,
+          "is_prime_eligible": false
         },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=rruOEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=rruOEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        {
+          "pos": 3,
+          "asin": "8129142155",
+          "type": "organic_also_viewed",
+          "price": 13.99,
+          "title": "Learning How To Fly: Life Lessons For The Youth [Sep 10, 2016] Kalam, Abdul A. P. J.",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/61xPDmYV7SL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.7,
+          "location": "carousel",
+          "price_upper": 13.99,
+          "reviews_count": 3573,
+          "is_prime_eligible": false
         },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=rruOEAAAQBAJ&dq=Atomic+Habits&hl=&cd=1&source=gbs_api",
-        "infoLink": "http://books.google.co.in/books?id=rruOEAAAQBAJ&dq=Atomic+Habits&hl=&source=gbs_api",
-        "canonicalVolumeLink": "https://books.google.com/books/about/Atomic_Habits.html?hl=&id=rruOEAAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "NOT_FOR_SALE",
-        "isEbook": false
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "NO_PAGES",
-        "embeddable": false,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": false
+        {
+          "pos": 4,
+          "asin": "0143424122",
+          "type": "organic_also_viewed",
+          "price": 14.01,
+          "title": "Ignited Minds",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/81y66NkOkpL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.6,
+          "location": "carousel",
+          "price_upper": 14.01,
+          "reviews_count": 4128,
+          "is_prime_eligible": false
         },
-        "pdf": {
-          "isAvailable": false
+        {
+          "pos": 5,
+          "asin": "9350293471",
+          "type": "organic_also_viewed",
+          "price": 15.43,
+          "title": "Turning Points: A Journey Through Challenges",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/81xiNxJ2mAL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.6,
+          "location": "carousel",
+          "price_upper": 15.43,
+          "reviews_count": 3325,
+          "is_prime_eligible": false
         },
-        "webReaderLink": "http://play.google.com/books/reader?id=rruOEAAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "NONE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "Atomic Habits will reshape the way you think about progress and success, and give you the tools and strategies you need to transform your habits--whether you are a team looking to win a championship, an organization hoping to redefine an ..."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "XfFvDwAAQBAJ",
-      "etag": "/a0LEjqpIJY",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/XfFvDwAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits",
-        "subtitle": "An Easy & Proven Way to Build Good Habits & Break Bad Ones",
-        "authors": ["James Clear"],
-        "publisher": "Penguin",
-        "publishedDate": "2018-10-16",
-        "description": "The #1 New York Times bestseller. Over 4 million copies sold! Tiny Changes, Remarkable Results No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. If you're having trouble changing your habits, the problem isn't you. The problem is your system. Bad habits repeat themselves again and again not because you don't want to change, but because you have the wrong system for change. You do not rise to the level of your goals. You fall to the level of your systems. Here, you'll get a proven system that can take you to new heights. Clear is known for his ability to distill complex topics into simple behaviors that can be easily applied to daily life and work. Here, he draws on the most proven ideas from biology, psychology, and neuroscience to create an easy-to-understand guide for making good habits inevitable and bad habits impossible. Along the way, readers will be inspired and entertained with true stories from Olympic gold medalists, award-winning artists, business leaders, life-saving physicians, and star comedians who have used the science of small habits to master their craft and vault to the top of their field. Learn how to: make time for new habits (even when life gets crazy); overcome a lack of motivation and willpower; design your environment to make success easier; get back on track when you fall off course; ...and much more. Atomic Habits will reshape the way you think about progress and success, and give you the tools and strategies you need to transform your habits--whether you are a team looking to win a championship, an organization hoping to redefine an industry, or simply an individual who wishes to quit smoking, lose weight, reduce stress, or achieve any other goal.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9780735211292"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "0735211299"
-          }
-        ],
-        "readingModes": {
-          "text": false,
-          "image": false
+        {
+          "pos": 6,
+          "asin": "0062457713",
+          "type": "organic_also_viewed",
+          "price": 14.38,
+          "title": "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.6,
+          "location": "carousel",
+          "price_upper": 14.38,
+          "reviews_count": 136920,
+          "is_prime_eligible": false
         },
-        "pageCount": 322,
-        "printType": "BOOK",
-        "categories": ["Business & Economics"],
-        "averageRating": 4,
-        "ratingsCount": 8,
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "0.13.0.0.preview.0",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
+        {
+          "pos": 7,
+          "asin": "0143062220",
+          "type": "organic_also_viewed",
+          "price": 12.77,
+          "title": "Wise and Otherwise - A Salute to life",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/81HP7-DUQKL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.6,
+          "location": "carousel",
+          "price_upper": 12.77,
+          "reviews_count": 5988,
+          "is_prime_eligible": false
         },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        {
+          "pos": 8,
+          "asin": "1501135910",
+          "type": "organic_also_viewed",
+          "price": 16.55,
+          "title": "Shoe Dog: A Memoir by the Creator of Nike",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/71U49T+hOTL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.7,
+          "location": "carousel",
+          "price_upper": 16.55,
+          "reviews_count": 56122,
+          "is_prime_eligible": false
         },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=XfFvDwAAQBAJ&dq=Atomic+Habits&hl=&cd=2&source=gbs_api",
-        "infoLink": "http://books.google.co.in/books?id=XfFvDwAAQBAJ&dq=Atomic+Habits&hl=&source=gbs_api",
-        "canonicalVolumeLink": "https://books.google.com/books/about/Atomic_Habits.html?hl=&id=XfFvDwAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "NOT_FOR_SALE",
-        "isEbook": false
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "NO_PAGES",
-        "embeddable": false,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": false
+        {
+          "pos": 9,
+          "asin": "0857197681",
+          "type": "organic_also_viewed",
+          "price": 14.99,
+          "title": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/71s50ZaxITL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.7,
+          "location": "carousel",
+          "price_upper": 14.99,
+          "reviews_count": 36716,
+          "is_prime_eligible": false
         },
-        "pdf": {
-          "isAvailable": true
+        {
+          "pos": 10,
+          "asin": "9394407219",
+          "type": "organic_also_viewed",
+          "price": 15.2,
+          "title": "The India Way : Strategies for an Uncertain World",
+          "images": [
+            "https://images-na.ssl-images-amazon.com/images/I/81mp3bdBitL._AC_UL200_SR200,200_.jpg"
+          ],
+          "rating": 4.6,
+          "location": "carousel",
+          "price_upper": 15.2,
+          "reviews_count": 2402,
+          "is_prime_eligible": false
+        }
+      ],
+      "url": "https://www.amazon.com/dp/8173711461",
+      "asin": "8173711461",
+      "page": 1,
+      "price": 12.85,
+      "stock": "Only 2 left in stock - order soon",
+      "title": "Wings of fire: An autobiography",
+      "buybox": [
+        {
+          "name": "buy_new",
+          "price": 12.85,
+          "condition": "new"
         },
-        "webReaderLink": "http://play.google.com/books/reader?id=XfFvDwAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "NONE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "Atomic Habits will reshape the way you think about progress and success, and give you the tools and strategies you need to transform your habits--whether you are a team looking to win a championship, an organization hoping to redefine an ..."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "yzFYEAAAQBAJ",
-      "etag": "U3E+2RTQpB0",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/yzFYEAAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits Summary (by James Clear)",
-        "subtitle": "Summary and Illustration",
-        "authors": ["James Clear"],
-        "publisher": "James Clear",
-        "description": "SUMMARY: ATOMIC HABITS: An Easy & Proven Way to Build Good Habits & Break Bad Ones. This book is not meant to replace the original book but to serve as a companion to it. ABOUT ORIGINAL BOOK: Atomic Habits can help you improve every day, no matter what your goals are. As one of the world's leading experts on habit formation, James Clear reveals practical strategies that will help you form good habits, break bad ones, and master tiny behaviors that lead to big changes. If you're having trouble changing your habits, the problem isn't you. Instead, the issue is with your system. There is a reason bad habits repeat themselves over and over again, it's not that you are not willing to change, but that you have the wrong system for changing. “You do not rise to the level of your goals. You fall to the level of your systems” - James Clear I’m a huge fan of this book, and as soon as I read it I knew it was going to make a big difference in my life, so I couldn’t wait to make a video on this book and share my ideas. Here is a link to James Clear’s website, where I found he uploads a tonne of useful posts on motivation, habit formation and human psychology. DISCLAIMER: This is an UNOFFICIAL summary and not the original book. It designed to record all the key points of the original book.",
-        "readingModes": {
-          "text": true,
-          "image": true
-        },
-        "printType": "BOOK",
-        "categories": ["Self-Help"],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": true,
-        "contentVersion": "1.1.1.0.preview.3",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=yzFYEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=yzFYEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=yzFYEAAAQBAJ&printsec=frontcover&dq=Atomic+Habits&hl=&cd=3&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=yzFYEAAAQBAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=yzFYEAAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-          "amount": 355.25,
-          "currencyCode": "INR"
-        },
-        "retailPrice": {
-          "amount": 248.67,
-          "currencyCode": "INR"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=yzFYEAAAQBAJ&rdid=book-yzFYEAAAQBAJ&rdot=1&source=gbs_api",
-        "offers": [
-          {
-            "finskyOfferType": 1,
-            "listPrice": {
-              "amountInMicros": 355250000,
-              "currencyCode": "INR"
+        {
+          "name": "buy_used",
+          "price": 11.75,
+          "condition": "used"
+        }
+      ],
+      "coupon": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61M4NTWpw7L.jpg",
+        "https://m.media-amazon.com/images/I/61e6gahfS7L.jpg"
+      ],
+      "rating": 4.5,
+      "category": [
+        {
+          "ladder": [
+            {
+              "url": "/books-used-books-textbooks/b/ref=dp_bc_aui_C_1/146-7771617-5970433?ie=UTF8&node=283155",
+              "name": "Books"
             },
-            "retailPrice": {
-              "amountInMicros": 248670000,
-              "currencyCode": "INR"
-            }
-          }
-        ]
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Atomic_Habits_Summary_by_James_Clear-sample-epub.acsm?id=yzFYEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "pdf": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Atomic_Habits_Summary_by_James_Clear-sample-pdf.acsm?id=yzFYEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=yzFYEAAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "Here is a link to James Clear’s website, where I found he uploads a tonne of useful posts on motivation, habit formation and human psychology. DISCLAIMER: This is an UNOFFICIAL summary and not the original book."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "fFCjDQAAQBAJ",
-      "etag": "vHp2Z7iphM8",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/fFCjDQAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits",
-        "subtitle": "the life-changing million-copy #1 bestseller",
-        "authors": ["James Clear"],
-        "publisher": "Random House",
-        "publishedDate": "2018-10-18",
-        "description": "THE PHENOMENAL INTERNATIONAL BESTSELLER: 1 MILLION COPIES SOLD Transform your life with tiny changes in behaviour, starting now. People think that when you want to change your life, you need to think big. But world-renowned habits expert James Clear has discovered another way. He knows that real change comes from the compound effect of hundreds of small decisions: doing two push-ups a day, waking up five minutes early, or holding a single short phone call. He calls them atomic habits. In this ground-breaking book, Clears reveals exactly how these minuscule changes can grow into such life-altering outcomes. He uncovers a handful of simple life hacks (the forgotten art of Habit Stacking, the unexpected power of the Two Minute Rule, or the trick to entering the Goldilocks Zone), and delves into cutting-edge psychology and neuroscience to explain why they matter. Along the way, he tells inspiring stories of Olympic gold medalists, leading CEOs, and distinguished scientists who have used the science of tiny habits to stay productive, motivated, and happy. These small changes will have a revolutionary effect on your career, your relationships, and your life. ________________________________ A NEW YORK TIMES AND SUNDAY TIMES BESTSELLER 'A supremely practical and useful book.' Mark Manson, author of The Subtle Art of Not Giving A F*ck 'James Clear has spent years honing the art and studying the science of habits. This engaging, hands-on book is the guide you need to break bad routines and make good ones.' Adam Grant, author of Originals 'Atomic Habits is a step-by-step manual for changing routines.' Books of the Month, Financial Times 'A special book that will change how you approach your day and live your life.' Ryan Holiday, author of The Obstacle is the Way",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9781473537804"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "1473537800"
-          }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": false
-        },
-        "pageCount": 234,
-        "printType": "BOOK",
-        "categories": ["Self-Help"],
-        "averageRating": 4,
-        "ratingsCount": 4,
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": true,
-        "contentVersion": "1.12.12.0.preview.2",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=fFCjDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=fFCjDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=fFCjDQAAQBAJ&printsec=frontcover&dq=Atomic+Habits&hl=&cd=4&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=fFCjDQAAQBAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=fFCjDQAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-          "amount": 707.11,
-          "currencyCode": "INR"
-        },
-        "retailPrice": {
-          "amount": 353.56,
-          "currencyCode": "INR"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=fFCjDQAAQBAJ&rdid=book-fFCjDQAAQBAJ&rdot=1&source=gbs_api",
-        "offers": [
-          {
-            "finskyOfferType": 1,
-            "listPrice": {
-              "amountInMicros": 707110000,
-              "currencyCode": "INR"
+            {
+              "url": "/Biographies-Memoirs-Books/b/ref=dp_bc_aui_C_2/146-7771617-5970433?ie=UTF8&node=2",
+              "name": "Biographies & Memoirs"
             },
-            "retailPrice": {
-              "amountInMicros": 353560000,
-              "currencyCode": "INR"
+            {
+              "url": "/Leaders-Notable-People-Books/b/ref=dp_bc_aui_C_3/146-7771617-5970433?ie=UTF8&node=2396",
+              "name": "Leaders & Notable People"
             }
-          }
-        ]
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Atomic_Habits-sample-epub.acsm?id=fFCjDQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "pdf": {
-          "isAvailable": false
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=fFCjDQAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "He calls them atomic habits. In this ground-breaking book, Clears reveals exactly how these minuscule changes can grow into such life-altering outcomes."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "5TmbDwAAQBAJ",
-      "etag": "74XAA9tHt20",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/5TmbDwAAQBAJ",
-      "volumeInfo": {
-        "title": "Tiny Habits",
-        "subtitle": "The Small Changes That Change Everything",
-        "authors": ["B. J. Fogg"],
-        "publisher": "Eamon Dolan Books",
-        "publishedDate": "2019",
-        "description": "The world's leading expert on habit formation shows how you can have a happier, healthier life: by starting small. Myth: Change is hard. Reality: Change can be easy if you know the simple steps of Behavior Design. Myth: It's all about willpower. Reality: Willpower is fickle and finite, and exactly the wrong way to create habits. Myth: You have to make a plan and stick to it. Reality: You transform your life by starting small and being flexible. BJ FOGG is here to change your life--and revolutionize how we think about human behavior. Based on twenty years of research and Fogg's experience coaching more than 40,000 people, Tiny Habits cracks the code of habit formation. With breakthrough discoveries in every chapter, you'll learn the simplest proven ways to transform your life. Fogg shows you how to feel good about your successes instead of bad about your failures. Already the habit guru to companies around the world, Fogg brings his proven method to a global audience for the first time. Whether you want to lose weight, de-stress, sleep better, or be more productive each day, Tiny Habits makes it easy to achieve.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9780358003328"
+          ]
+        }
+      ],
+      "currency": "USD",
+      "delivery": [
+        {
+          "date": {
+            "by": "10",
+            "from": "July 7"
           },
-          {
-            "type": "ISBN_10",
-            "identifier": "0358003326"
+          "type": "$3.70 delivery"
+        }
+      ],
+      "_warnings": [
+        "Could not parse lightning deal."
+      ],
+      "deal_type": "",
+      "page_type": "Product",
+      "price_sns": 0,
+      "variation": [
+        {
+          "asin": "B07F6C99Q7",
+          "selected": false,
+          "dimensions": {
+            "Format": "Kindle"
           }
-        ],
-        "readingModes": {
-          "text": false,
-          "image": true
         },
-        "pageCount": 317,
-        "printType": "BOOK",
-        "categories": ["Change (Psychology)"],
-        "averageRating": 5,
-        "ratingsCount": 1,
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "0.0.1.0.preview.1",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=5TmbDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=5TmbDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=5TmbDwAAQBAJ&printsec=frontcover&dq=Atomic+Habits&hl=&cd=5&source=gbs_api",
-        "infoLink": "http://books.google.co.in/books?id=5TmbDwAAQBAJ&dq=Atomic+Habits&hl=&source=gbs_api",
-        "canonicalVolumeLink": "https://books.google.com/books/about/Tiny_Habits.html?hl=&id=5TmbDwAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "NOT_FOR_SALE",
-        "isEbook": false
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": false
-        },
-        "pdf": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Tiny_Habits-sample-pdf.acsm?id=5TmbDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=5TmbDwAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "BJ FOGG is here to change your life--and revolutionize how we think about human behavior. Based on twenty years of research and Fogg&#39;s experience coaching more than 40,000 people, Tiny Habits cracks the code of habit formation."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "mSiOEAAAQBAJ",
-      "etag": "+XNKQFywnLk",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/mSiOEAAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits",
-        "subtitle": "An Easy & Proven Way to Build Good Habits & Break Bad Ones",
-        "authors": ["James Clear"],
-        "publisher": "National Geographic Books",
-        "publishedDate": "2019-09-10",
-        "description": "A leading expert on habit formation reveals practical strategies to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9780593207093"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "0593207092"
+        {
+          "asin": "B086MCQ1Z8",
+          "selected": false,
+          "dimensions": {
+            "Format": "Audible Audiobook, Abridged"
           }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": false
         },
-        "pageCount": 0,
-        "printType": "BOOK",
-        "categories": ["Business & Economics"],
-        "averageRating": 4,
-        "ratingsCount": 30,
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "preview-1.0.0",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=mSiOEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=mSiOEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=mSiOEAAAQBAJ&dq=Atomic+Habits&hl=&cd=6&source=gbs_api",
-        "infoLink": "http://books.google.co.in/books?id=mSiOEAAAQBAJ&dq=Atomic+Habits&hl=&source=gbs_api",
-        "canonicalVolumeLink": "https://books.google.com/books/about/Atomic_Habits.html?hl=&id=mSiOEAAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "NOT_FOR_SALE",
-        "isEbook": false
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "NO_PAGES",
-        "embeddable": false,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": false
-        },
-        "pdf": {
-          "isAvailable": false
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=mSiOEAAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "NONE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "A leading expert on habit formation reveals practical strategies to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "M35ZzQEACAAJ",
-      "etag": "TQ1Oj72+Uyc",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/M35ZzQEACAAJ",
-      "volumeInfo": {
-        "title": "Habits Tracker Journal",
-        "subtitle": "Daily Motivational Habits Tracker to Help You Fulfill Your Dreams",
-        "authors": ["Grey Crown"],
-        "publishedDate": "2020-01-11",
-        "description": "HABITS TRACKER JOURNAL: Daily motivational habits tracker to help you fulfill your dreams.This journal is the perfect tool to help begin your journey towards greater accomplishments by tracking and improving your habits.FEATURES: - Daily habit tracker to make good habits inevitable and bad habits impossible - Plenty of note-taking spaces - Professional matte cardstock cover - Durable perfect binding - Dimensions: 6\"x9\".\"1% BETTER EVERY DAY\" make a huge different after one year.You can track any habits you can think of: wake up earlier, eat healthier, drink more water, go for a walk, drink less coffee/alcohol, learn new things, meditate, start running/cycling/doing yoga, etc. Highly effective people have the right daily habits to increase their productivity and be successful.This journal is the answer to Sticking with Good Habits Every Day with Least Effort. The secret to getting results that last is to never stop making improvements",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_10",
-            "identifier": "1658949161"
-          },
-          {
-            "type": "ISBN_13",
-            "identifier": "9781658949163"
+        {
+          "asin": "B01BITNP8U",
+          "selected": false,
+          "dimensions": {
+            "Format": "Paperback"
           }
-        ],
-        "readingModes": {
-          "text": false,
-          "image": false
         },
-        "pageCount": 102,
-        "printType": "BOOK",
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "preview-1.0.0",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=M35ZzQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=M35ZzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=M35ZzQEACAAJ&dq=Atomic+Habits&hl=&cd=7&source=gbs_api",
-        "infoLink": "http://books.google.co.in/books?id=M35ZzQEACAAJ&dq=Atomic+Habits&hl=&source=gbs_api",
-        "canonicalVolumeLink": "https://books.google.com/books/about/Habits_Tracker_Journal.html?hl=&id=M35ZzQEACAAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "NOT_FOR_SALE",
-        "isEbook": false
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "NO_PAGES",
-        "embeddable": false,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": false
-        },
-        "pdf": {
-          "isAvailable": false
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=M35ZzQEACAAJ&hl=&source=gbs_api",
-        "accessViewStatus": "NONE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "HABITS TRACKER JOURNAL: Daily motivational habits tracker to help you fulfill your dreams.This journal is the perfect tool to help begin your journey towards greater accomplishments by tracking and improving your habits.FEATURES: - Daily ..."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "DemUDwAAQBAJ",
-      "etag": "hJWRtqJHGpE",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/DemUDwAAQBAJ",
-      "volumeInfo": {
-        "title": "Summary & Analysis: Atomic Habits By James Clear: An Easy & Proven Way to Build Good Habits and Break Bad Ones",
-        "authors": ["Black Book"],
-        "publisher": "Lulu Press, Inc",
-        "publishedDate": "2018-12-05",
-        "description": "Summary of Atomic Habits In Atomic Habits: An Easy & Proven Way to Build Good Habits and Break Bad Ones, James Clear explains the concept of habits at an atomic level. The book prioritizes habit building over goal setting and outlines various pros and cons of the two. Instead of making massive changes in any particular area, a greater effect can be reached by making numerous small changes. In place of one big 10% improvement, you can make dozens of small 1% improvements that when added together have a much larger impact. The book breaks down the 4 steps of habits: cue, craving, response, and reward, and then further explains the psychology behind why habits hold so much power. The book goes into considerable detail for both how to develop and stick with positive habits, and how to identify and shake off bad habits. for more information click on BUY BUTTON",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9780359270088"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "0359270085"
+        {
+          "asin": "8181900073",
+          "selected": false,
+          "dimensions": {
+            "Format": "Audio CD"
           }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": true
         },
-        "printType": "BOOK",
-        "categories": ["Education"],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "1.1.1.0.preview.3",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=DemUDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=DemUDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=DemUDwAAQBAJ&printsec=frontcover&dq=Atomic+Habits&hl=&cd=8&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=DemUDwAAQBAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=DemUDwAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-          "amount": 193.5,
-          "currencyCode": "INR"
-        },
-        "retailPrice": {
-          "amount": 135.45,
-          "currencyCode": "INR"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=DemUDwAAQBAJ&rdid=book-DemUDwAAQBAJ&rdot=1&source=gbs_api",
-        "offers": [
-          {
-            "finskyOfferType": 1,
-            "listPrice": {
-              "amountInMicros": 193500000,
-              "currencyCode": "INR"
-            },
-            "retailPrice": {
-              "amountInMicros": 135450000,
-              "currencyCode": "INR"
+        {
+          "asin": "8173711461",
+          "selected": true,
+          "dimensions": {
+            "Format": "Hardcover"
+          }
+        }
+      ],
+      "has_videos": false,
+      "sales_rank": [
+        {
+          "rank": 149050,
+          "ladder": [
+            {
+              "url": "/gp/bestsellers/books/ref=pd_zg_ts_books",
+              "name": "Books"
             }
-          }
-        ]
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Summary_Analysis_Atomic_Habits_By_James-sample-epub.acsm?id=DemUDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          ]
         },
-        "pdf": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Summary_Analysis_Atomic_Habits_By_James-sample-pdf.acsm?id=DemUDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=DemUDwAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "The book goes into considerable detail for both how to develop and stick with positive habits, and how to identify and shake off bad habits. for more information click on BUY BUTTON"
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "1ySBO0lQmBYC",
-      "etag": "OHE+kcbcYrk",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/1ySBO0lQmBYC",
-      "volumeInfo": {
-        "title": "The Little Book of Talent",
-        "authors": ["Daniel Coyle"],
-        "publisher": "Random House",
-        "publishedDate": "2012-09-06",
-        "description": "- Don’t fall for the prodigy myth - Take off your watch - Embrace struggle - Take a nap - To learn it more deeply, teach it The Little Book of Talent is packed full of 52 simple, practical, proven tips that will help improve any skill. Whether you want a better singing voice, a more powerful golf swing or success in the business world, The Little Book of Talent’s method will help you realise your potential.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9781446492819"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "1446492818"
-          }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": false
-        },
-        "pageCount": 81,
-        "printType": "BOOK",
-        "categories": ["Business & Economics"],
-        "averageRating": 3.5,
-        "ratingsCount": 25,
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": true,
-        "contentVersion": "1.3.5.0.preview.2",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=1ySBO0lQmBYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=1ySBO0lQmBYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.co.in/books?id=1ySBO0lQmBYC&printsec=frontcover&dq=Atomic+Habits&hl=&cd=9&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=1ySBO0lQmBYC&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=1ySBO0lQmBYC"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-          "amount": 441.61,
-          "currencyCode": "INR"
-        },
-        "retailPrice": {
-          "amount": 309.13,
-          "currencyCode": "INR"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=1ySBO0lQmBYC&rdid=book-1ySBO0lQmBYC&rdot=1&source=gbs_api",
-        "offers": [
-          {
-            "finskyOfferType": 1,
-            "listPrice": {
-              "amountInMicros": 441610000,
-              "currencyCode": "INR"
-            },
-            "retailPrice": {
-              "amountInMicros": 309130000,
-              "currencyCode": "INR"
+        {
+          "rank": 308,
+          "ladder": [
+            {
+              "url": "/gp/bestsellers/books/2426/ref=pd_zg_hrsr_books",
+              "name": "Scientist Biographies"
             }
-          }
-        ]
-      },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/The_Little_Book_of_Talent-sample-epub.acsm?id=1ySBO0lQmBYC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          ]
         },
-        "pdf": {
-          "isAvailable": false
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=1ySBO0lQmBYC&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-      },
-      "searchInfo": {
-        "textSnippet": "- Don’t fall for the prodigy myth - Take off your watch - Embrace struggle - Take a nap - To learn it more deeply, teach it The Little Book of Talent is packed full of 52 simple, practical, proven tips that will help improve any skill."
-      }
-    },
-    {
-      "kind": "books#volume",
-      "id": "WmqyDwAAQBAJ",
-      "etag": "Sr3XgBkdluw",
-      "selfLink": "https://www.googleapis.com/books/v1/volumes/WmqyDwAAQBAJ",
-      "volumeInfo": {
-        "title": "Atomic Habits (Tamil)",
-        "authors": ["James Clear"],
-        "publisher": "Manjul Publishing",
-        "publishedDate": "2019-05-29",
-        "description": "நீங்கள் உங்கள் வாழ்க்கையை மாற்ற விரும்பினால், நீங்கள் பிரம்மாண்டமாக சிந்திக்க வேண்டும் என்று மக்கள் நினைக்கின்றனர். ஆனால், பழக்கங்களைப் பற்றி விரிவாக ஆய்வு செய்து அதில் உலகப் புகழ்பெற்ற நிபுணர்களில் ஒருவராகத் திகழுகின்ற ஜேம்ஸ் கிளியர் அதற்கு வேறொரு வழியைக் கண்டுபிடித்துள்ளார். தினமும் காலையில் ஐந்து நிமிடங்கள் முன்னதாகவே எழுந்திருத்தல், ஒரு பதினைந்து நிமிடங்கள் மெதுவோட்டத்தில் ஈடுபடுதல், கூடுதலாக ஒரு பக்கம் படித்தல் போன்ற நூற்றுக்கணக்கான சிறிய தீர்மானங்களின் கூட்டு விளைவிலிருந்துதான் உண்மையான மாற்றம் வருகிறது என்று அவர் கூறுகிறார்.\u003cbr\u003eஇந்தக் கடுகளவு மாற்றங்கள் எப்படி உங்கள் வாழ்க்கையைப் பெரிதும் மாற்றக்கூடிய விளைவுகளாக உருவெடுக்கின்றன என்பதை ஜேம்ஸ் இப்புத்தகத்தில் தெளிவாக வெளிப்படுத்துகிறார். அதற்கு அறிவியற்பூர்வமான விளக்கங்களையும் அவர் கொடுக்கிறார். ஒலிம்பிக்கில் தங்கப் பதக்கம் வென்றவர்கள், முன்னணி நிறுவனத் தலைவர்கள், புகழ்பெற்ற அறிவியலறிஞர்கள் ஆகியோரைப் பற்றிய உத்வேகமூட்டும் கதைகளைப் பயன்படுத்தி அவர் தன்னுடைய கோட்பாடுகளை விளக்கும் விதம் சுவாரசியமூட்டுவதாக இருக்கிறது.\u003cbr\u003eஇச்சிறு மாற்றங்கள் உங்கள் தொழில்வாழ்க்கையின்மீதும் உங்கள் உறவுகளின்மீதும் உங்கள் தனிப்பட்ட வாழ்வின்மீதும் அளப்பரிய தாக்கம் ஏற்படுத்தி அவற்றைப் பரிபூரணமாக மாற்றும் என்பது உறுதி.",
-        "industryIdentifiers": [
-          {
-            "type": "ISBN_13",
-            "identifier": "9789388241908"
-          },
-          {
-            "type": "ISBN_10",
-            "identifier": "9388241908"
-          }
-        ],
-        "readingModes": {
-          "text": true,
-          "image": true
-        },
-        "pageCount": 290,
-        "printType": "BOOK",
-        "categories": ["Self-Help"],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": true,
-        "contentVersion": "1.1.1.0.preview.3",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=WmqyDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=WmqyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "ta",
-        "previewLink": "http://books.google.co.in/books?id=WmqyDwAAQBAJ&printsec=frontcover&dq=Atomic+Habits&hl=&cd=10&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=WmqyDwAAQBAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=WmqyDwAAQBAJ"
-      },
-      "saleInfo": {
-        "country": "IN",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-          "amount": 289.1,
-          "currencyCode": "INR"
-        },
-        "retailPrice": {
-          "amount": 202.37,
-          "currencyCode": "INR"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=WmqyDwAAQBAJ&rdid=book-WmqyDwAAQBAJ&rdot=1&source=gbs_api",
-        "offers": [
-          {
-            "finskyOfferType": 1,
-            "listPrice": {
-              "amountInMicros": 289100000,
-              "currencyCode": "INR"
-            },
-            "retailPrice": {
-              "amountInMicros": 202370000,
-              "currencyCode": "INR"
+        {
+          "rank": 483,
+          "ladder": [
+            {
+              "url": "/gp/bestsellers/books/2418/ref=pd_zg_hrsr_books",
+              "name": "Presidents & Heads of State Biographies"
             }
-          }
-        ]
+          ]
+        }
+      ],
+      "top_review": "book arrived in great condition!\n  \nRead more",
+      "asin_in_url": "8173711461",
+      "description": "Reading books is a kind of enjoyment. Reading books is a good habit. We bring you a different kinds of books. You can carry this book where ever you want. It is easy to carry. It can be an ideal gift to yourself and to your loved ones. Care instruction keep away from fire.",
+      "price_upper": 12.85,
+      "pricing_str": "",
+      "pricing_url": "https://www.amazon.com/gp/offer-listing/8173711461?startIndex=0",
+      "discount_end": "",
+      "manufacturer": "A. P. J. Abdul Kalam, Arun Tiwari",
+      "max_quantity": 2,
+      "price_buybox": 12.85,
+      "product_name": "Wings of fire: An autobiography",
+      "bullet_points": "",
+      "is_addon_item": false,
+      "price_initial": 14.95,
+      "pricing_count": 97,
+      "reviews_count": 14863,
+      "sns_discounts": [],
+      "developer_info": [],
+      "lightning_deal": null,
+      "price_shipping": 3.7,
+      "is_prime_pantry": false,
+      "product_details": {
+        "asin": "8173711461",
+        "isbn_10": "9788173711466",
+        "isbn_13": "978-8173711466",
+        "language": "English",
+        "hardcover": "700 pages",
+        "publisher": "Sangam Books Ltd; First Edition (January 1, 1999)",
+        "dimensions": "7.99 x 10 x 1.85 inches",
+        "item_weight": "10.1 ounces"
       },
-      "accessInfo": {
-        "country": "IN",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Atomic_Habits_Tamil-sample-epub.acsm?id=WmqyDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "pdf": {
-          "isAvailable": true,
-          "acsTokenLink": "http://books.google.co.in/books/download/Atomic_Habits_Tamil-sample-pdf.acsm?id=WmqyDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=WmqyDwAAQBAJ&hl=&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
+      "featured_merchant": {
+        "link": "/gp/aag/details/?seller=A3ML1VV84XQBCW&sshmPath=shipping-rates",
+        "name": "Details",
+        "seller_id": "A3ML1VV84XQBCW",
+        "shipped_from": "Details",
+        "is_amazon_fulfilled": false
       },
-      "searchInfo": {
-        "textSnippet": "நீங்கள் உங்கள் வாழ்க்கையை மாற்ற விரும்பினால், நீங்கள் பிரம்மாண்டமாக சிந்திக்க வேண்டும் ..."
-      }
-    }
-  ]
-}
+      "is_prime_eligible": false,
+      "parse_status_code": 12005,
+      "answered_questions_count": 0,
+      "rating_stars_distribution": [
+        {
+          "rating": 5,
+          "percentage": 70
+        },
+        {
+          "rating": 4,
+          "percentage": 18
+        },
+        {
+          "rating": 3,
+          "percentage": 7
+        },
+        {
+          "rating": 2,
+          "percentage": 2
+        },
+        {
+          "rating": 1,
+          "percentage": 2
+        }
+      ]
+    },
+    "created_at": "2023-07-02 18:33:25",
+    "updated_at": "2023-07-02 18:33:29",
+    "page": 1,
+    "url": "https://www.amazon.com/dp/8173711461",
+    "job_id": "7081339096047567873",
+    "status_code": 200,
+    "parser_type": ""
+  }
+]
