@@ -51,7 +51,7 @@ class GoogleBook:
     @property
     @tryAndExcept
     def isbn(self):
-        return checkAndReturnForIndustryIdentifier(self.volumeInfo['industryIdentifiers'])
+        return int(checkAndReturnForIndustryIdentifier(self.volumeInfo['industryIdentifiers']))
 
     @property
     @tryAndExcept
@@ -163,7 +163,7 @@ class GoogleBooksSearch:
 
     @property
     def isbns(self):
-        return returnListWithoutNone(list(map(lambda item: item['isbn'], self.data)))
+        return returnListWithoutNone(list(map(lambda item: (item['isbn']), self.data)))
 
     @property
     def publishers(self):

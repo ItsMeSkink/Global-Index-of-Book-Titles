@@ -25,7 +25,7 @@ def AbeBooksData(baseQuery):
     }
 
     for url in abeBooksSearchResults.hrefs:
-        # differenciates the "search" and the "books" urls
+        '''sorts the url in "search" and "books"'''
         endpointIndex = 0
         endpointsNumber = len(abeBooksSearchEndpoints)
 
@@ -40,10 +40,10 @@ def AbeBooksData(baseQuery):
 
     
     searchResultsData = concatenate(
-        list(threadMap(lambda url: AbeBooksSearch(url).hrefs, abeBooksUrls['search'])))
+        list(threadMap(lambda url: AbeBooksSearch(url).expandedData, abeBooksUrls['search'])))
 
     booksData = list(
-        threadMap(lambda url: AbeBooksBook(url).url, abeBooksUrls['books']))
+        threadMap(lambda url: AbeBooksBook(url).data, abeBooksUrls['books']))
 
     entireData = searchResultsData + booksData
 

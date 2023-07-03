@@ -1,11 +1,11 @@
 from concurrent.futures import ThreadPoolExecutor
+import json
 import multiprocessing
 import time
 from Algorithms.ExtractMostCommonPhrase import extractMostCommonPhrase
 from Culmination.AbeBooks import AbeBooksData
 from Culmination.Amazon import AmazonData
 from Scrappers.Google import GoogleSearch
-
 from Scrappers.GoogleBooks import GoogleBooksSearch
 
 isbnInput = input('Input an ISBN: ')
@@ -19,19 +19,30 @@ except:
     # fetches similar books from Google Books
     extract = book.extractTitleAndAuthor()
     # yields the actual useful extract
-    
+
 baseQuery = f"{extract['title']} by {extract['author'].split(' ')[-1]}"
 print(baseQuery)
 
-# initTime = time.time()
-    # executor = ThreadPoolExecutor()
-    # executor.submit(AmazonData, baseQuery)
-    # executor.submit(AbeBooksData, baseQuery)
-    # AmazonData(baseQuery)
-# AbeBooksData(baseQuery)
-    # amazon = multiprocessing.Process(target=AmazonData, args=[baseQuery])
-    # abeBooks = multiprocessing.Process(target=AbeBooksData, args=[baseQuery])
-    # amazon.start()
-    # abeBooks.start()
+with open(f'AnalysisData/GoogleBooks/{baseQuery}.json', 'w') as file:
+    '''stores the data in GoogleBooks Analysis folder'''
+    currentBook = list()
 
-# print(time.time() - initTime)
+    if len(book.data) == 1:
+        currentBook = book.data
+    else:
+        currentBook = [
+            {
+                "title": extract['title'],
+                "author": extract['author'],
+                "isbn": int(isbnInput),
+            }
+        ]
+
+    file.write(str(json.dumps(currentBook + book.similars.data)))
+
+initTime = time.time()
+
+AmazonData(baseQuery)
+AbeBooksData(baseQuery)
+
+print(time.time() - initTime)

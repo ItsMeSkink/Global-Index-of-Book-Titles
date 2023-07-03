@@ -27,6 +27,7 @@ class GoogleSearch(Smartproxy):
         self.results = self.inContent['results']
 
     @property
+    @tryAndExcept
     def imagesData(self):
         imageResults = self.results['images']['items']
 
@@ -60,7 +61,10 @@ class GoogleSearch(Smartproxy):
 
     @property
     def data(self):
-        return self.imagesData + self.organicData
+        try:
+            return self.imagesData + self.organicData
+        except:
+            return self.organicData
 
     @property
     @tryAndExcept

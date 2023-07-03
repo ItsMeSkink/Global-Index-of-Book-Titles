@@ -232,8 +232,9 @@ class AbeBooksSearch(webpageData):
         # @tryAndExcept
         def extractAbeBooksData(url):
             try:
-                return AbeBooksBook(url)
-            except Exception as e:
-                print(e)
+                data = AbeBooksBook(url)
+                return data
+            except:
+                pass
 
-        return list(threadMap(lambda url: extractAbeBooksData(url).data, self.hrefs))
+        return list(map(lambda url: extractAbeBooksData(url).data, self.hrefs))
