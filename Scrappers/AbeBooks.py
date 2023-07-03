@@ -1,7 +1,7 @@
-from utilities import concatenate, extractText, extractURL, returnListWithoutNone, threadMap, tryAndExcept
-from functools import reduce
-import re
 from Scrappers.requestOrigins import webpageData
+import re
+from functools import reduce
+from utilities import concatenate, extractText, extractURL, returnListWithoutNone, threadMap, tryAndExcept
 import sys
 sys.path.insert(2, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
 
@@ -140,6 +140,7 @@ class AbeBooksBook(webpageData):
 
     @property
     def data(self):
+
         return {
             'title': self.title,
             'subtitle': self.subtitle,
@@ -228,8 +229,11 @@ class AbeBooksSearch(webpageData):
     @property
     def expandedData(self):
 
-        @tryAndExcept
+        # @tryAndExcept
         def extractAbeBooksData(url):
-            return AbeBooksBook(url)
+            try:
+                return AbeBooksBook(url)
+            except Exception as e:
+                print(e)
 
         return list(threadMap(lambda url: extractAbeBooksData(url).data, self.hrefs))

@@ -54,7 +54,8 @@ class webpageData:
     @property
     def statusCode(self):
         statusCode = self.webpage.status_code
-        return colored(statusCode, 'green' if statusCode == 200 else 'red')
+        return statusCode
+        # return colored(statusCode, 'green' if statusCode == 200 else 'red')
 
     def __str__(self):
         return self.webpage.text

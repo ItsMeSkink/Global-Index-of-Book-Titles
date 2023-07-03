@@ -15,7 +15,7 @@ def readJSONFile(filename):
 
 def tryAndExcept(function):
     '''this is a decorator function which will automatically pass the below function in try and except logic'''
-    def mod(*args, **kwargs):
+    def mod(*args, **kwargs, ):
         try:
             return function(*args, **kwargs)
         except:

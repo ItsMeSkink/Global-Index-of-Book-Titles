@@ -102,27 +102,35 @@ class GoogleBook:
 
 class GoogleBooksSearch:
     def __init__(self, isbn=int(), title=str(), author=str()):
+        # sets the default values for these attributes
         if (isbn != int()):
             self.isbn = isbn
+            self.title = None
+            self.author = None
             self.query = f'isbn:{isbn}'
         elif (title != str() and author != str()):
             self.title = title
             self.author = author
+            self.isbn = None
             self.query = f"intitle:{title} inauthor:{author}"
         elif (title != str()):
             self.title = title
+            self.author = None
+            self.isbn = None
             self.query = f'intitle:{title}'
         elif (author != str()):
             self.author = author
+            self.title = None
+            self.isbn = None
             self.query = f'inauthor:{author}'
         else:
             raise KeyError(
                 'No Query Resolved, Please Enter either an ISBN, Title or Author')
-
+        statusCode = self.statusCode
         if (self.webpage.json()['totalItems'] == 0):
-            self.statusCode = 404
+            statusCode = 404
 
-        match self.statusCode:
+        match statusCode:
             case 404:
                 raise ValueError(colored('Book Not Found. Branch Out', 'red'))
             case 429:
@@ -181,27 +189,31 @@ class GoogleBooksSearch:
 
     @property
     def similars(self):
-        book = GoogleBooksSearch(self.isbn).data[0]
-        author = book['authors'][0].split(
-            ' ')[-1] if book['authors'] != None else None
+        if self.isbn != None:
+            book = GoogleBooksSearch(self.isbn).data[0]
+            author = book['authors'][0].split(
+                ' ')[-1] if book['authors'] != None else None
+            # use the author's last name for search
 
-        bookAgain = GoogleBooksSearch(
-            title=book['title'], author=author)
-        # use the author's last name for search
+            bookAgain = GoogleBooksSearch(
+                title=book['title'], author=author)
+        else:
+            bookAgain = self
+            # isbn directs to a single particular book. Another type of query would yield multiple results (which we require as similars results)
 
-        return bookAgain.data
+        return bookAgain
+        # this would not only return the dictionary data but the entire class to be utilized
 
     def extractTitleAndAuthor(self):
-        titles = list(map(lambda item: re.sub(
-            r'[^\w\s]', '', item['title']), self.similars))
-        try:
-            authors = list(map(lambda item: re.sub(
-                r'[^\w\s]', '', item['authors'][0]), self.similars))
-            extractedAuthors = extractMostCommonPhrase(authors)
-        except:
-            pass
+        def removeNonAlphaSpace(item):
+            return re.sub(r'[^\w\s]', '', item)
+
+        titles = list(map(removeNonAlphaSpace, self.similars.titles))
+        authors = list(
+            map(removeNonAlphaSpace, concatenate(self.similars.authors)))
 
         extractedTitle = extractMostCommonPhrase(titles)
+        extractedAuthors = extractMostCommonPhrase(authors)
 
         return {
             'title': extractedTitle,

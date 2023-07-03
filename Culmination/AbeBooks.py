@@ -1,12 +1,12 @@
-import sys
-
-sys.path.insert(1, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
 import json
+import sys
+sys.path.insert(1, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
 import time
 
 from Scrappers.AbeBooks import AbeBooksBook, AbeBooksSearch
 from Scrappers.Google import GoogleSearch
 from utilities import concatenate, processMap, threadMap
+
 
 
 def AbeBooksData(baseQuery):
@@ -38,18 +38,18 @@ def AbeBooksData(baseQuery):
         if (endpointIndex == endpointsNumber):
             abeBooksUrls['books'].append(url)
 
+    
     searchResultsData = concatenate(
-        list(threadMap(lambda url: AbeBooksSearch(url).expandedData, abeBooksUrls['search'])))
+        list(threadMap(lambda url: AbeBooksSearch(url).hrefs, abeBooksUrls['search'])))
 
     booksData = list(
-        threadMap(lambda url: AbeBooksBook(url).data, abeBooksUrls['books']))
+        threadMap(lambda url: AbeBooksBook(url).url, abeBooksUrls['books']))
 
     entireData = searchResultsData + booksData
-
 
     with open(f'./AnalysisData/AbeBooks/{baseQuery}.json', 'w') as file:
         file.write(json.dumps(entireData))
 
-
     return entireData
+
 
