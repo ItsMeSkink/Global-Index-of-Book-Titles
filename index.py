@@ -1,54 +1,54 @@
-import os
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import json
+import multiprocessing
+import threading
+import time
+from Algorithms.ExtractMostCommonPhrase import extractMostCommonPhrase
+from Culmination.AbeBooks import AbeBooksData
+from Culmination.Amazon import AmazonData
+from Scrappers.Google import GoogleSearch
+from Scrappers.GoogleBooks import GoogleBooksSearch
 
-from termcolor import colored
-from GoogleBooksAPI import GoogleBooksSearch
-from ScrappingClasses.abebooksWebpage import abeBookSearchPage, abeBooksWebpage
-from ScrappingClasses.amazonWebpage import amazonWebpage
-from ScrappingClasses.googleWebpage import googleResults
-from globalFunctions import threadMap
 
-os.system('start microsoft.windows.camera:')
+isbnInput = input('Input an ISBN: ')
+try:
+    book = GoogleBooksSearch(isbnInput)
+    extract = book.extractTitleAndAuthor()
+except:
+    bookTitle = extractMostCommonPhrase(GoogleSearch(isbnInput).titles)
+    # extracts the title from Google SERP
+    book = GoogleBooksSearch(title=bookTitle)
+    # fetches similar books from Google Books
+    extract = book.extractTitleAndAuthor()
+    # yields the actual useful extract
 
-book = GoogleBooksSearch(input('Enter an ISBN: '))
-
-extract = book.extractTitleAuthor()
-baseQuery = f' {extract["title"]} by {extract["author"]}'
-
+baseQuery = f"{extract['title']} by {extract['author'].split(' ')[-1]}"
 print(baseQuery)
 
-amazonSearchResults = googleResults(baseQuery + ' site:amazon.com')
-abebooksSearchResults = googleResults(baseQuery + ' site:abebooks.com')
+with open(f'AnalysisData/GoogleBooks/{baseQuery}.json', 'w') as file:
+    '''stores the data in GoogleBooks Analysis folder'''
+    currentBook = list()
 
-print(amazonSearchResults.hrefs)
-print(abebooksSearchResults.hrefs)
+    if len(book.data) == 1:
+        currentBook = book.data
+    else:
+        currentBook = [
+            {
+                "title": extract['title'],
+                "author": extract['author'],
+                "isbn": int(isbnInput),
+            }
+        ]
 
-# a = ['https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean/dp/1544507852', 'https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512279', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean/dp/1544507879', 'https://www.amazon.com/Cant-Hurt-Me-Master-Your-ebook/dp/B07H453KGH', 'https://www.amazon.com/Cant-Hurt-Me-David-Goggins-audiobook/dp/B07KKP62FW', 'https://www.amazon.com/cant-hurt-me-david-goggins-book/s%3Fk%3Dcan%2527t%2Bhurt%2Bme%2Bdavid%2Bgoggins%2Bbook', 'https://www.amazon.com/Cant-Hurt-Me-Master-Clean-ebook/dp/B085TCV73F', 'https://www.amazon.com/Cant-Hurt-Me-Master-Goggins/dp/B09SGFDBFD']
+    file.write(str(json.dumps(currentBook + book.similars.data)))
 
+initTime = time.time()
 
-def scrapAmazonWebpage(href):
-    try:
-        return amazonWebpage(href).data
-    except:
-        return colored(href, 'red')
+if (__name__ == '__main__'):
+    with ThreadPoolExecutor() as executor:
+        executor.submit(AmazonData, baseQuery)
+        executor.submit(AbeBooksData, baseQuery)
+# AmazonData(baseQuery)
+# AbeBooksData(baseQuery)
 
-
-amazonScraped = list(
-    threadMap(lambda href: scrapAmazonWebpage(href), amazonSearchResults))
-
-
-def scrapAbeBooksWebpage(href):
-    abebooksScrapResults = []
-    try:
-        if (href.startswith('https://www.abebooks.com/servlet/SearchResults') == True):
-            abebooksScrapResults += abeBookSearchPage(href)
-        else:
-            abebooksScrapResults.join([abeBooksWebpage(href).data])
-
-        return abebooksScrapResults
-    except:
-        return colored(href, 'red')
-
-
-abebooksScraped = list(
-    threadMap(lambda href: scrapAbeBooksWebpage(href), abebooksSearchResults))
-
+print(time.time() - initTime)
