@@ -1,12 +1,14 @@
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import json
 import multiprocessing
+import threading
 import time
 from Algorithms.ExtractMostCommonPhrase import extractMostCommonPhrase
 from Culmination.AbeBooks import AbeBooksData
 from Culmination.Amazon import AmazonData
 from Scrappers.Google import GoogleSearch
 from Scrappers.GoogleBooks import GoogleBooksSearch
+
 
 isbnInput = input('Input an ISBN: ')
 try:
@@ -42,7 +44,11 @@ with open(f'AnalysisData/GoogleBooks/{baseQuery}.json', 'w') as file:
 
 initTime = time.time()
 
-AmazonData(baseQuery)
-AbeBooksData(baseQuery)
+if (__name__ == '__main__'):
+    with ThreadPoolExecutor() as executor:
+        executor.submit(AmazonData, baseQuery)
+        executor.submit(AbeBooksData, baseQuery)
+# AmazonData(baseQuery)
+# AbeBooksData(baseQuery)
 
 print(time.time() - initTime)

@@ -1,7 +1,8 @@
+from concurrent.futures import ProcessPoolExecutor
 from Scrappers.requestOrigins import webpageData
 import re
 from functools import reduce
-from utilities import concatenate, extractText, extractURL, returnListWithoutNone, threadMap, tryAndExcept
+from utilities import concatenate, extractText, extractURL, processMap, returnListWithoutNone, threadMap, tryAndExcept
 import sys
 sys.path.insert(2, 'C:\\Users\\Wicke\Desktop\\GIBT Draft 3')
 
@@ -237,4 +238,4 @@ class AbeBooksSearch(webpageData):
             except:
                 pass
 
-        return list(map(lambda url: extractAbeBooksData(url).data, self.hrefs))
+        return list(threadMap(lambda url: extractAbeBooksData(url).data, self.hrefs))
